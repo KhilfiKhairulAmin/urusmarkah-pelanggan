@@ -39,10 +39,20 @@ export default function DaftarMasuk () {
     return (
         <>
             <form onSubmit={hantar}>
-                Emel: <input type='email' value={emel} onChange={(event) => setEmel(event.target.value)}></input><br />
-                Nama: <input type='text' value={nama} onChange={(event) => setNama(event.target.value)}></input><br />
-                Kata laluan: <input type='password' value={kataLaluan} onChange={(event) => setKataLaluan(event.target.value)}></input><br />
-                <input type='submit' value='Submit' />
+                <div style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    marginLeft: '1rem',
+                    marginRight: '70%'
+                }}>
+                    <h3 style={{ alignSelf: 'center'}}>Daftar Akaun Baharu</h3>
+                    Emel <input type='email' value={emel} onChange={(event) => setEmel(event.target.value)}></input><br />
+                    Nama <input type='text' value={nama} onChange={(event) => setNama(event.target.value)}></input><br />
+                    Kata laluan <input type='password' value={kataLaluan} onChange={(event) => setKataLaluan(event.target.value)}></input><br />
+                    <input type='submit' value='Submit' style={{
+                        alignSelf: 'flex-end'
+                    }}/>
+                </div>
             </form>
         </>
     )
