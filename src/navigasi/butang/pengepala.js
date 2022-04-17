@@ -4,7 +4,9 @@ export default function Pengepala (props) {
     return (
         <span style={{
             display: 'flex',
-            flexDirection: 'row'
+            flexDirection: 'row',
+            borderBottom: '1px solid',
+            paddingBottom: '1rem'
         }}>
             <label>Urusmarkah</label>
             <label style={{ flexGrow: '1'}}></label>
