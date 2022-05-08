@@ -15,6 +15,24 @@ export default function DaftarMasuk () {
     }
 
     useEffect(() => {
+
+        const daftar = async (maklumat) => {
+            const data = await fetch('http://localhost:5000/pengesahan/daftar', {
+                method: 'POST',
+                headers: {
+                    'Content-Type':'application/json'
+                },
+                body: JSON.stringify(maklumat)
+            })
+
+            const penggunaBaharu = await data.json();
+
+            console.log(penggunaBaharu);
+            localStorage.setItem('token', penggunaBaharu.token);
+            localStorage.setItem('refreshToken', penggunaBaharu.refreshToken);
+
+            navigate(`/pertandingan`);
+        }
         if (sudahHantar) {
             const maklumat = {
                 emel: emel,
@@ -22,17 +40,7 @@ export default function DaftarMasuk () {
                 kata_laluan: kataLaluan
             };
 
-            fetch('http://localhost:5000/api/v1/pengguna/baharu', {
-                method: 'POST',
-                headers: {
-                    'Content-Type':'application/json'
-                },
-                body: JSON.stringify(maklumat)
-            })
-            .then((response) => {
-                console.log(`Status Penghantaran Borang: ${response.status}`);
-                navigate('/senarai');
-            });
+            daftar(maklumat);
         }
     }, [emel, kataLaluan, nama, sudahHantar, navigate])
 

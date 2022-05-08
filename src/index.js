@@ -4,6 +4,9 @@ import App from './App';
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import SenaraiAkaun from './halaman/senarai_akaun';
 import DaftarMasuk from './halaman/daftar_masuk';
+import LogMasuk from './halaman/log_masuk';
+import Pengguna from './halaman/pengguna';
+import PapanMaklumat from './halaman/pengguna/papan_maklumat';
 
 const container = document.getElementById('root');
 
@@ -16,6 +19,8 @@ root.render(
         <Route path='senarai' element={<SenaraiAkaun />} />
       </Route>
       <Route path='/daftar_masuk' element={<DaftarMasuk />} />
+      <Route path='/log_masuk' element={<LogMasuk /> } />
+      <Route path='/pertandingan' element={<PapanMaklumat />} />
     </Routes>
   </BrowserRouter>
 )
