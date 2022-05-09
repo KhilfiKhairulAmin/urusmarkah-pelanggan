@@ -25,6 +25,11 @@ export default function DaftarMasuk () {
                 body: JSON.stringify(maklumat)
             })
 
+            if (data.status !== 201) {
+                setSudahHantar(false);
+                return;
+            }
+
             const penggunaBaharu = await data.json();
 
             console.log(penggunaBaharu);

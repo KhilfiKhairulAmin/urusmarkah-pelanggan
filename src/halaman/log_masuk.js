@@ -6,6 +6,7 @@ export default function LogMasuk () {
     const [ emel, setEmel ] = useState('');
     const [ kataLaluan, setKataLaluan ] = useState('');
     const [ sudahHantar, setSudahHantar ] = useState(false)
+    const [ mesej, setMesej ] = useState("");
     const navigate = useNavigate();
 
     const hantar = (e) => {
@@ -14,7 +15,8 @@ export default function LogMasuk () {
     }
 
     useEffect(() => {
-        if(!sudahHantar) return
+
+        if(!sudahHantar) return;
 
         const maklumat_pengguna = {
             emel: emel,
@@ -29,6 +31,12 @@ export default function LogMasuk () {
                 },
                 body: JSON.stringify(maklumat_pengguna)
             });
+            
+            if (res.status !== 200) {
+                setMesej("Emel atau kata laluan anda tidak benar");
+                setSudahHantar(false);
+                return;
+            }
 
             const credentials = await res.json();
 
@@ -48,7 +56,8 @@ export default function LogMasuk () {
             <form onSubmit={hantar}>
                 Emel<br /><input type='email' value={emel} onChange={(event) => setEmel(event.target.value)} /><br />
                 Kata laluan<br /><input type='password' value={kataLaluan} onChange={(event) => setKataLaluan(event.target.value)} /><br />
-                <input type='submit' value='Hantar' />
+                <input type='submit' value='Hantar' /><br />
+                {mesej}
             </form>
         </>
     )

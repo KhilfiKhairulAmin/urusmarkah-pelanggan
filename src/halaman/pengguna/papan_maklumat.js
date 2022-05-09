@@ -1,9 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function PapanMaklumat () {
+    const [maklumat, setMaklumat] = useState({});
+    
     useEffect(() => {
         const dapatkanMaklumatPengguna = async () => {
-            const res = await fetch(`http://localhost:5000/api/v1/pengguna/semua`, {
+            const res = await fetch(`http://localhost:5000/api/v1/pengguna/maklumat_pengguna`, {
                 method: 'GET',
                 headers: {
                     'Authorization': 'Bearer ' + localStorage.getItem('token')
@@ -12,7 +14,7 @@ export default function PapanMaklumat () {
 
             const maklumatPengguna = await res.json();
 
-            console.log(maklumatPengguna);
+            setMaklumat(maklumatPengguna);
         }
 
         dapatkanMaklumatPengguna();
@@ -20,7 +22,9 @@ export default function PapanMaklumat () {
 
     return (
         <>
-            Check log F12
+            Nama: {maklumat.nama}
+            <br />
+            Emel: {maklumat.emel}
         </>
     )
 }
