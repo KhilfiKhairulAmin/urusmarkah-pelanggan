@@ -7,6 +7,7 @@ import DaftarMasuk from './halaman/daftar_masuk';
 import LogMasuk from './halaman/log_masuk';
 import Pengguna from './halaman/pengguna';
 import PapanMaklumat from './halaman/pengguna/papan_maklumat';
+import SenaraiPertandingan from './halaman/pertandingan/senarai_pertandingan';
 
 const container = document.getElementById('root');
 
@@ -20,7 +21,8 @@ root.render(
       </Route>
       <Route path='/daftar_masuk' element={<DaftarMasuk />} />
       <Route path='/log_masuk' element={<LogMasuk /> } />
-      <Route path='/pertandingan' element={<PapanMaklumat />} />
+      <Route path='/pengguna' element={<PapanMaklumat />} />
+      <Route path='/pertandingan' element={<SenaraiPertandingan />} />
     </Routes>
   </BrowserRouter>
 )
