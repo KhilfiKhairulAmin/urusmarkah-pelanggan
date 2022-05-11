@@ -53,7 +53,9 @@ export default function SenaraiPertandingan () {
     }, [navigasi, senaraiPertandingan]);
 
     const senarai = senaraiPertandingan.map((pertandingan) =>
-        <div key={pertandingan._id}>
+        <div style={{
+            borderBottom: "1px solid gray"
+        }} key={pertandingan._id}>
             <Pertandingan nama_pertandingan={pertandingan.nama_pertandingan} tarikh_dibuat={pertandingan.metadata.tarikh_dibuat} />
             <br />
         </div>
