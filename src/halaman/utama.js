@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom'
-import { Link } from "react-router-dom";
+import ButangNav from '../komponen/navigasi/butang/ButangNav';
 import './Utama.css'
 
 export default function Utama () {
@@ -16,12 +16,8 @@ function Pengepala () {
         <span className='Pengepala'>
             <label>Urusmarkah</label>
             <label></label>
-            <Link to='/pengesahan/log_masuk'>
-                <button>Log Masuk</button>
-            </Link>
-            <Link to='/pengesahan/daftar_masuk'>
-                <button>Daftar Masuk</button>
-            </Link>
+            <ButangNav to='/pengesahan/log_masuk' buttonText='Log Masuk' />
+            <ButangNav to='/pengesahan/daftar_masuk' buttonText='Daftar Masuk' />
         </span>
     )
 }
