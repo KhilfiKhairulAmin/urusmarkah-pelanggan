@@ -15,7 +15,7 @@ function Pengepala () {
     return (
         <span className='Pengepala'>
             <label>Urusmarkah</label>
-            <label style={{ flexGrow: '1'}}></label>
+            <label></label>
             <Link to='/log_masuk'>
                 <button>Log Masuk</button>
             </Link>
