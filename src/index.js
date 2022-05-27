@@ -23,8 +23,8 @@ root.render(
       </Route>
 
       <Route path='/pengesahan'>
-        <Route path='/daftar_masuk' element={<DaftarMasuk />} />
-        <Route path='/log_masuk' element={<LogMasuk /> } />
+        <Route path='daftar_masuk' element={<DaftarMasuk />} />
+        <Route path='log_masuk' element={<LogMasuk /> } />
       </Route>
 
       <Route path='/pengguna' element={<PapanMaklumat />} />

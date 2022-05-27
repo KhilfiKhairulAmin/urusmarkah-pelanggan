@@ -1,0 +1,6 @@
+.Pengepala {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid;
+    padding-bottom: 1rem
+}
