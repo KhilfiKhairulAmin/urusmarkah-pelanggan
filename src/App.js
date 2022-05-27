@@ -1,18 +1,19 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import SenaraiAkaun from './halaman/senarai_akaun';
-import DaftarMasuk from './halaman/daftar_masuk';
-import LogMasuk from './halaman/log_masuk';
+import SenaraiAkaun from './halaman/SenaraiAkaun';
+import DaftarMasuk from './halaman/DaftarMasuk';
+import LogMasuk from './halaman/LogMasuk';
 import PapanMaklumat from './halaman/pengguna/papan_maklumat';
 import SenaraiPertandingan from './halaman/pertandingan/senarai_pertandingan';
 import CiptaPertandingan from './halaman/pertandingan/cipta_pertandingan';
-import Pengesahan from './halaman/pengesahan';
+import Pengesahan from './halaman/Pengesahan';
+import Utama from './halaman/Utama';
 
 function App() {
   return (
-    <BrowserRouter>
+  <BrowserRouter>
     <Routes>
 
-      <Route path='/' element={<App />}>
+      <Route path='/' element={<Utama />}>
         <Route path='senarai' element={<SenaraiAkaun />} />
       </Route>
 
