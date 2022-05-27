@@ -2,6 +2,7 @@ import { Outlet } from 'react-router-dom'
 import ButangNav from '../komponen/navigasi/butang/ButangNav';
 import './Utama.css'
 
+// Tetapkan struktur halaman utama di sini
 export default function Utama () {
     return (
         <>
@@ -11,6 +12,7 @@ export default function Utama () {
     )
 }
 
+// Komponen pengepala digunakan untuk tujuan navigasi
 function Pengepala () {
     return (
         <span className='Pengepala'>

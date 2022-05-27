@@ -3,58 +3,67 @@ import { useNavigate } from "react-router-dom";
 
 export default function DaftarMasuk () {
 
-    // Maklumat pengguna
+    // Menyimpan maklumat borang
     const [ emel, setEmel ] = useState('');
     const [ nama, setNama ] = useState('');
     const [ kataLaluan, setKataLaluan ] = useState('');
 
-    // State form
-    const [ sudahHantar, setSudahHantar ] = useState(false);
-    const navigate = useNavigate();
+    // Menyimpan keadaan borang
+    const [ hantar, setHantar ] = useState(false);
 
-    const hantar = (e) => {
+    // Fungsi untuk routing
+    const nav = useNavigate();
+
+    const hantarBorang = (e) => {
         e.preventDefault();
-        setSudahHantar(true);
+        setHantar(true);
     }
 
     useEffect(() => {
 
-        const daftar = async (maklumat) => {
+        if (!hantar) return;
+
+        const maklumatDaftarMasuk = {
+            emel: emel,
+            nama: nama,
+            kata_laluan: kataLaluan
+        };
+
+        const daftarPengguna = async () => {
+            // Memesan pendaftaran pengguna
             const data = await fetch('http://localhost:5000/pengesahan/daftar', {
                 method: 'POST',
                 headers: {
                     'Content-Type':'application/json'
                 },
-                body: JSON.stringify(maklumat)
+                body: JSON.stringify(maklumatDaftarMasuk)
             })
 
+            // Pendaftaran gagal 
             if (data.status !== 201) {
-                setSudahHantar(false);
+                setHantar(false);
                 return;
             }
 
-            const penggunaBaharu = await data.json();
+            // Pendaftaran berjaya 
+            // Mendapatkan kembali token & refresh token
+            const tokenPengesahan = await data.json();
 
-            console.log(penggunaBaharu);
-            localStorage.setItem('token', penggunaBaharu.token);
-            localStorage.setItem('refreshToken', penggunaBaharu.refreshToken);
+            // Menyimpan nilai token dan refresh token dalam Local Storage
+            localStorage.setItem('token', tokenPengesahan.token);
+            localStorage.setItem('refreshToken', tokenPengesahan.refreshToken);
 
-            navigate(`/pertandingan`);
+            // Navigasi ke laman utama pengguna
+            nav(`/pertandingan`);
         }
-        if (sudahHantar) {
-            const maklumat = {
-                emel: emel,
-                nama: nama,
-                kata_laluan: kataLaluan
-            };
 
-            daftar(maklumat);
-        }
-    }, [emel, kataLaluan, nama, sudahHantar, navigate])
+        daftarPengguna();
+
+    }, [emel, kataLaluan, nama, hantar, nav])
 
     return (
         <>
-            <form onSubmit={hantar}>
+            <form onSubmit={hantarBorang}>
                 <div style={{
                     display: 'flex',
                     flexDirection: 'column',
