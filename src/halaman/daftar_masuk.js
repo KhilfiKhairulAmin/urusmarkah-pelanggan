@@ -3,9 +3,12 @@ import { useNavigate } from "react-router-dom";
 
 export default function DaftarMasuk () {
 
+    // Maklumat pengguna
     const [ emel, setEmel ] = useState('');
     const [ nama, setNama ] = useState('');
     const [ kataLaluan, setKataLaluan ] = useState('');
+
+    // State form
     const [ sudahHantar, setSudahHantar ] = useState(false);
     const navigate = useNavigate();
 

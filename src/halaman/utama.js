@@ -16,10 +16,10 @@ function Pengepala () {
         <span className='Pengepala'>
             <label>Urusmarkah</label>
             <label></label>
-            <Link to='/log_masuk'>
+            <Link to='/pengesahan/log_masuk'>
                 <button>Log Masuk</button>
             </Link>
-            <Link to='/daftar_masuk'>
+            <Link to='/pengesahan/daftar_masuk'>
                 <button>Daftar Masuk</button>
             </Link>
         </span>
