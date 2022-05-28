@@ -1,4 +1,5 @@
-import { Outlet } from 'react-router-dom'
+import { Link, Outlet } from 'react-router-dom'
+import Logo from '../komponen/identiti/Logo';
 import ButangNav from '../komponen/navigasi/butang/ButangNav';
 import './Utama.css'
 
@@ -16,7 +17,7 @@ export default function Utama () {
 function Pengepala () {
     return (
         <span className='Pengepala'>
-            <label>Urusmarkah</label>
+            <Logo />
             <label></label>
             <ButangNav to='/pengesahan/log_masuk' buttonText='Log Masuk' />
             <ButangNav to='/pengesahan/daftar_masuk' buttonText='Daftar Masuk' />
