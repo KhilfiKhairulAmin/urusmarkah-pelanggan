@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import SenaraiAkaun from './halaman/SenaraiAkaun';
-import DaftarMasuk from './halaman/DaftarMasuk';
-import LogMasuk from './halaman/LogMasuk';
+import DaftarMasuk from './halaman/pengesahan/DaftarMasuk';
+import LogMasuk from './halaman/pengesahan/LogMasuk';
 import PapanMaklumat from './halaman/pengguna/papan_maklumat';
 import SenaraiPertandingan from './halaman/pertandingan/senarai_pertandingan';
 import CiptaPertandingan from './halaman/pertandingan/cipta_pertandingan';

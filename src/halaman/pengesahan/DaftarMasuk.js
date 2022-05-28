@@ -19,8 +19,10 @@ export default function DaftarMasuk () {
         setHantar(true);
     }
 
-    useEffect(() => {
+    useEffect(() => { 
 
+        // Menvigasi ke laman utama jika pengguna telah log masuk
+        if (localStorage.getItem('token')) nav('/pertandingan');
         if (!hantar) return;
 
         const maklumatDaftarMasuk = {
@@ -31,7 +33,7 @@ export default function DaftarMasuk () {
 
         const daftarPengguna = async () => {
             // Memesan pendaftaran pengguna
-            const data = await fetch('http://localhost:5000/pengesahan/daftar', {
+            const data = await fetch('http://localhost:5000/api/v1/pengguna/daftar', {
                 method: 'POST',
                 headers: {
                     'Content-Type':'application/json'
@@ -40,7 +42,7 @@ export default function DaftarMasuk () {
             })
 
             // Pendaftaran gagal 
-            if (data.status !== 201) {
+            if (data.status >= 400) {
                 setHantar(false);
                 return;
             }
