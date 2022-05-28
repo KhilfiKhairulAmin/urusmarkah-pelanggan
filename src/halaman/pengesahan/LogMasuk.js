@@ -32,7 +32,7 @@ export default function LogMasuk () {
 
         const logMasuk = async () => {
             // Memesan log masuk pengguna
-            const res = await fetch('http://localhost:5000/pengesahan/log_masuk', {
+            const res = await fetch( 'http://localhost:5000/api/v1/pengguna/log_masuk', {
                 method: 'POST',
                 headers: {
                     'Content-Type':'application/json'
@@ -41,7 +41,7 @@ export default function LogMasuk () {
             });
             
             // Log masuk tidak berjaya
-            if (res.status !== 200) {
+            if (res.status >= 400) {
                 setMesej("Emel atau kata laluan anda tidak benar");
                 setHantar(false);
                 return;
