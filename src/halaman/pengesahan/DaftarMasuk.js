@@ -54,7 +54,7 @@ export default function DaftarMasuk () {
             localStorage.setItem('refreshToken', tokenPengesahan.refreshToken);
 
             // Navigasi ke laman utama pengguna
-            nav(`/pertandingan`);
+            nav(`/urusmarkah`);
         }
 
         daftarPengguna();
