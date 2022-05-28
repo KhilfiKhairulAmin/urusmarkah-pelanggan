@@ -61,12 +61,6 @@ export default function DaftarMasuk () {
 
     }, [emel, kataLaluan, nama, hantar, nav])
 
-    // Menvigasi ke laman utama jika pengguna telah log masuk
-    if (localStorage.getItem('token')) {
-        nav('/pengesahan');
-        return;
-    }
-
     return (
         <>
             <form onSubmit={hantarBorang}>

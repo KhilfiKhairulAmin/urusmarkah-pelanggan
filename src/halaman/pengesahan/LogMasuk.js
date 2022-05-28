@@ -63,12 +63,6 @@ export default function LogMasuk () {
         
     }, [emel, kataLaluan, hantar, nav])
 
-    // Menvigasi ke laman utama jika pengguna telah log masuk
-    if (localStorage.getItem('token')) {
-        nav('/pengesahan');
-        return;
-    }
-    
     return (
         <>
             <h2>Log Masuk</h2>
