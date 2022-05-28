@@ -5,7 +5,7 @@ import LogMasuk from './halaman/pengesahan/LogMasuk';
 import PapanMaklumat from './halaman/pengguna/papan_maklumat';
 import SenaraiPertandingan from './halaman/pertandingan/senarai_pertandingan';
 import CiptaPertandingan from './halaman/pertandingan/cipta_pertandingan';
-import Pengesahan from './halaman/Pengesahan';
+import Pengesahan from './halaman/pengesahan/Pengesahan';
 import Utama from './halaman/Utama';
 
 function App() {

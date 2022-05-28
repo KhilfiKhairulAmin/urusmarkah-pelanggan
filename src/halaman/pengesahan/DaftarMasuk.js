@@ -21,8 +21,6 @@ export default function DaftarMasuk () {
 
     useEffect(() => { 
 
-        // Menvigasi ke laman utama jika pengguna telah log masuk
-        if (localStorage.getItem('token')) nav('/pertandingan');
         if (!hantar) return;
 
         const maklumatDaftarMasuk = {
@@ -62,6 +60,12 @@ export default function DaftarMasuk () {
         daftarPengguna();
 
     }, [emel, kataLaluan, nama, hantar, nav])
+
+    // Menvigasi ke laman utama jika pengguna telah log masuk
+    if (localStorage.getItem('token')) {
+        nav('/pengesahan');
+        return;
+    }
 
     return (
         <>

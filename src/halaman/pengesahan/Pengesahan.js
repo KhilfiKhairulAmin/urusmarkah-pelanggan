@@ -1,5 +1,5 @@
 import { Link, Outlet } from "react-router-dom";
-import Logo from "../komponen/identiti/Logo";
+import Logo from "../../komponen/identiti/Logo";
 
 export default function Pengesahan () {
     return (
