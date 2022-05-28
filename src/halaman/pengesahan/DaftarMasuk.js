@@ -47,11 +47,11 @@ export default function DaftarMasuk () {
 
             // Pendaftaran berjaya 
             // Mendapatkan kembali token & refresh token
-            const tokenPengesahan = await data.json();
+            const { token, refreshToken } = await data.json();
 
             // Menyimpan nilai token dan refresh token dalam Local Storage
-            localStorage.setItem('token', tokenPengesahan.token);
-            localStorage.setItem('refreshToken', tokenPengesahan.refreshToken);
+            localStorage.setItem('token', token);
+            localStorage.setItem('refreshToken', refreshToken);
 
             // Navigasi ke laman utama pengguna
             nav(`/urusmarkah`);
