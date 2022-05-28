@@ -22,9 +22,9 @@ function App() {
         <Route path='log_masuk' element={<LogMasuk /> } />
       </Route>
 
-      <Route path='/urusmarkah' element={<PengepalaPertandingan />} />
-
-      <Route path='/pertandingan' element={<SenaraiPertandingan />} />
+      <Route path='/urusmarkah' element={<PengepalaPertandingan />}>
+        <Route path='papan_pemuka' element={<SenaraiPertandingan />} />
+      </Route>
 
       <Route path='/pertandingan/cipta' element={<CiptaPertandingan />} />
     </Routes>

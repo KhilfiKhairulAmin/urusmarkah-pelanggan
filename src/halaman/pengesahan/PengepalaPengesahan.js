@@ -21,12 +21,11 @@ export default function PengepalaPengesahan () {
                 }
             });
 
-            console.log(res.status)
             if (res.status >= 400) {
                 return;
             }
             
-            nav('/pertandingan');
+            nav('/urusmarkah');
         }
 
         ujiPengesahan();
