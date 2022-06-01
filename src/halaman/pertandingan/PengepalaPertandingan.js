@@ -11,7 +11,7 @@ export default function PengepalaPertandingan () {
         <span style={{ display: 'flex', flexDirection: 'row', borderBottom: 'solid 1px'}}>
             <Logo to='/urusmarkah' />
             <label style={{ flexGrow: 1}} />
-            <ButangNav to='./pengguna' buttonText={maklumatFetch.nama ?? 'Loading...'} />
+            <ButangNav to='/pengguna' buttonText={maklumatFetch.nama ?? 'Loading...'} />
         </span>
         <Outlet />
     </>)

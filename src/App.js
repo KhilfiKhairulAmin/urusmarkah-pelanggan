@@ -25,10 +25,11 @@ function App() {
       </Route>
 
       <Route path='/urusmarkah' element={<PengepalaPertandingan />}>
-        <Route path='pengguna' element={<PengepalaPengguna />} >
+      </Route>
+
+      <Route path='/pengguna' element={<PengepalaPengguna />} >
           <Route path='' element={<PapanPemuka />} />
           <Route path='kemas_kini' element={<BorangKemaskini />} />
-        </Route>
       </Route>
 
       <Route path='/pertandingan/cipta' element={<CiptaPertandingan />} />

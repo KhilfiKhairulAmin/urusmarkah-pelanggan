@@ -14,7 +14,7 @@ export default function useFetchProtected ( url, init ) {
         const fetchProtected = async () => {
 
             const reqInit = { ...init, headers: { authorization: `Bearer ${localStorage.getItem('token')}`}}
-
+            console.log("17")
             const res = await fetch(url, reqInit);
             console.log(res.status)
             if (res.status >= 400) {
@@ -36,7 +36,9 @@ export default function useFetchProtected ( url, init ) {
                 localStorage.setItem('token', token);
                 localStorage.setItem('refreshToken', refreshToken);
 
+                console.log("39");
                 reqInit.headers.authorization = `Bearer ${token}`;
+                
 
                 const res = await fetch(url, reqInit);
 
@@ -48,8 +50,9 @@ export default function useFetchProtected ( url, init ) {
             }
 
             const data = await res.json();
-
+            console.log("BEFORE FETCH")
             setMaklumatFetch(data);
+            console.log(data)
         }
 
         fetchProtected();
