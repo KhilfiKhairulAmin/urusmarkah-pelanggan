@@ -1,13 +1,14 @@
 import { useContext } from "react";
-import { KonteksPengguna } from "./PengepalaPengguna";
+import { KonteksPengelola } from "./PengepalaPengelola";
 
 export default function PapanPemuka () {
-    const [maklumat] = useContext(KonteksPengguna);
+    const [pengelola] = useContext(KonteksPengelola);
     
     return (
         <>
-        <h2>{maklumat.nama}</h2>
-        <h5>#{maklumat._id}</h5>
+        <h2>{pengelola.namaAkaun}</h2>
+        <h4>{pengelola.namaPenuh}</h4>
+        <h6>#{pengelola._id}</h6>
         </>
     )
 

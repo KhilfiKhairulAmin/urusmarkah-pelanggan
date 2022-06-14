@@ -1,15 +1,15 @@
 import { useContext, useEffect, useState } from "react";
-import { KonteksPengguna } from "./PengepalaPengguna";
+import { KonteksPengelola } from "./PengepalaPengelola";
 
 export default function BorangKemaskini () {
-    const [pengguna] = useContext(KonteksPengguna);
+    const [pengguna] = useContext(KonteksPengelola);
 
     const [ nama, setNama ] = useState(pengguna.nama ?? " ");
     const [ kataLaluan, setKataLaluan ] = useState('');
     const [ kataLaluanUlangan, setKataLaluanUlangan ] = useState('');
 
     const [ hantar, setHantar ] = useState(false);
-    console.log(pengguna.nama)
+    
     const hantarBorang = (e) => {
         e.preventDefault();
         setHantar(true);

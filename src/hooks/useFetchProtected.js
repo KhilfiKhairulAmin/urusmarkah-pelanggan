@@ -58,5 +58,5 @@ export default function useFetchProtected ( url, init ) {
         fetchProtected();
     }, [init, maklumatFetch, nav, url]);
 
-    return [maklumatFetch];
+    return maklumatFetch;
 }

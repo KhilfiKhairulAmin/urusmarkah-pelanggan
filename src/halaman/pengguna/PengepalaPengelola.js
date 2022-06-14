@@ -3,16 +3,16 @@ import { Link, Outlet } from "react-router-dom";
 import useFetchProtected from "../../hooks/useFetchProtected";
 import Logo from "../../komponen/identiti/Logo";
 
-export const KonteksPengguna = createContext();
+export const KonteksPengelola = createContext();
 
 export default function PengepalaPengguna () {
 
-    const pengguna = useFetchProtected('http://localhost:5000/api/v1/pengguna', {});
+    const pengelola = useFetchProtected('http://localhost:5000/api/v1/pengelola', {});
 
     return (
         <>
         <title>Pertandingan</title>
-        <KonteksPengguna.Provider value={pengguna} >
+        <KonteksPengelola.Provider value={pengelola} >
             <span style={{ display: 'flex', borderBottom: 'solid 1px' }}>
                 <Logo to='/urusmarkah' />   
             </span>
@@ -20,7 +20,7 @@ export default function PengepalaPengguna () {
                 <Link to='./kemas_kini'><label>Kemaskini Profil</label></Link>
             </span>
             <Outlet />
-        </KonteksPengguna.Provider>
+        </KonteksPengelola.Provider>
         </>
     )
 }

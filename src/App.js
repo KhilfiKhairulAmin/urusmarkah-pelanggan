@@ -6,7 +6,7 @@ import CiptaPertandingan from './halaman/pertandingan/cipta_pertandingan';
 import PengepalaPengesahan from './halaman/pengesahan/PengepalaPengesahan';
 import Utama from './halaman/Utama';
 import PengepalaPertandingan from './halaman/pertandingan/PengepalaPertandingan';
-import PengepalaPengguna from './halaman/pengguna/PengepalaPengguna';
+import PengepalaPengelola from './halaman/pengguna/PengepalaPengelola';
 import PapanPemuka from './halaman/pengguna/PapanPemuka';
 import BorangKemaskini from './halaman/pengguna/BorangKemasKini';
 
@@ -27,7 +27,7 @@ function App() {
       <Route path='/urusmarkah' element={<PengepalaPertandingan />}>
       </Route>
 
-      <Route path='/pengguna' element={<PengepalaPengguna />} >
+      <Route path='/pengelola' element={<PengepalaPengelola />} >
           <Route path='' element={<PapanPemuka />} />
           <Route path='kemas_kini' element={<BorangKemaskini />} />
       </Route>
