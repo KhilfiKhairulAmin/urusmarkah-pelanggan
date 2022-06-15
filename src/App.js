@@ -7,6 +7,7 @@ import CiptaPertandingan from './halaman/pertandingan/cipta_pertandingan';
 import PengepalaPengesahan from './halaman/pengesahan/PengepalaPengesahan';
 import Utama from './halaman/Utama';
 import PengepalaPertandingan from './halaman/pertandingan/PengepalaPertandingan';
+import PapanMaklumat from './halaman/pengguna/papan_pemuka';
 
 function App() {
   return (
@@ -22,9 +23,11 @@ function App() {
         <Route path='log_masuk' element={<LogMasuk /> } />
       </Route>
 
-      <Route path='/urusmarkah' element={<PengepalaPertandingan />} />
+      <Route path='/urusmarkah' element={<PengepalaPertandingan />}>
+        <Route path='papan_pemuka' element={<PapanMaklumat />} />
+      </Route>
 
-      <Route path='/pertandingan' element={<SenaraiPertandingan />} />
+      <Route path='/pengguna' element={<SenaraiPertandingan />} />
 
       <Route path='/pertandingan/cipta' element={<CiptaPertandingan />} />
     </Routes>
