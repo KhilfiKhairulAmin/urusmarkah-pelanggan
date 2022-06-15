@@ -2,31 +2,50 @@ import { useContext, useEffect, useState } from "react";
 import { KonteksPengelola } from "./PengepalaPengelola";
 
 export default function BorangKemaskini () {
-    const [pengguna] = useContext(KonteksPengelola);
+    const pengelola = useContext(KonteksPengelola);
 
-    const [ nama, setNama ] = useState(pengguna.nama ?? " ");
-    const [ kataLaluan, setKataLaluan ] = useState('');
-    const [ kataLaluanUlangan, setKataLaluanUlangan ] = useState('');
+    const [ namaAkaun, setNamaAkaun ] = useState('');
+    const [ namaPenuh, setNamaPenuh ] = useState('')
+    const [ katalaluan, setKataLaluan ] = useState('');
+    const [ katalaluanSemula, setKataLaluanUlangan ] = useState('');
 
     const [ hantar, setHantar ] = useState(false);
     
     const hantarBorang = (e) => {
         e.preventDefault();
         setHantar(true);
+
     }
 
     useEffect(() => {
 
-        setNama(pengguna.nama ?? " ")
+        if (pengelola && !hantar) {
+            setNamaAkaun(pengelola.namaAkaun || '')
+            setNamaPenuh(pengelola.namaPenuh || '')
+        }
 
-    }, [hantar, pengguna.nama])
+        const hantarBorang = async () => {
+
+            const pengelola = {
+                namaAkaun,
+                namaPenuh
+            }
+
+            const res = await fetch('http://localhost:5000/api/v1/pengelola/kemas_kini', {
+                method: 'PUT',
+                
+            })
+        }
+
+    }, [hantar, namaAkaun, namaPenuh, pengelola])
 
     return (
         <>
         <form onSubmit={hantarBorang}>
-            Nama: <input type='text' value={nama} onChange={(e) => setNama(e.target.value)} /><br />
-            Katalaluan baharu: <input type='text' value={kataLaluan} onChange={(e) => setKataLaluan(e.target.value)} /><br />
-            Katalaluan ulangan: <input type='text' value={kataLaluanUlangan} onChange={(e) => setKataLaluanUlangan(e.target.value)} /><br />
+            Nama Akaun: <input type='text' value={namaAkaun} onChange={(e) => setNamaAkaun(e.target.value)} /><br />
+            Nama Penuh: <input type='text' value={namaPenuh} onChange={(e) => setNamaPenuh(e.target.value)} /><br />
+            Katalaluan Baharu: <input type='text' value={katalaluan} onChange={(e) => setKataLaluan(e.target.value)} /><br />
+            Katalaluan Semula: <input type='text' value={katalaluanSemula} onChange={(e) => setKataLaluanUlangan(e.target.value)} /><br />
             <input type='submit' value={'Kemaskini'} />
         </form>
         </>

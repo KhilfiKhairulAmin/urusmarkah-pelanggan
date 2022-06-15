@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { KonteksPengelola } from "./PengepalaPengelola";
 
 export default function PapanPemuka () {
-    const [pengelola] = useContext(KonteksPengelola);
+    const pengelola = useContext(KonteksPengelola);
     
     return (
         <>
