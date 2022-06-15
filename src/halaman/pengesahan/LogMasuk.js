@@ -5,7 +5,7 @@ export default function LogMasuk () {
 
     // Menyimpan maklumat borang
     const [ emel, setEmel ] = useState('');
-    const [ kataLaluan, setKataLaluan ] = useState('');
+    const [ katalaluan, setKatalaluan ] = useState('');
 
     // Menyimpan keadaan borang
     const [ hantar, setHantar ] = useState(false);
@@ -25,35 +25,38 @@ export default function LogMasuk () {
 
         if(!hantar) return;
 
-        const maklumatLogMasuk = {
-            emel: emel,
-            kata_laluan: kataLaluan
+        const pengelola = {
+            emel,
+            katalaluan
         }
 
         const logMasuk = async () => {
             // Memesan log masuk pengguna
-            const res = await fetch( 'http://localhost:5000/api/v1/pengguna/log_masuk', {
+            const log = await fetch( 'http://localhost:5000/api/v1/pengelola/log_masuk', {
                 method: 'POST',
                 headers: {
                     'Content-Type':'application/json'
                 },
-                body: JSON.stringify(maklumatLogMasuk)
+                body: JSON.stringify(pengelola)
             });
+
+            const res = await log.json();
             
             // Log masuk tidak berjaya
-            if (res.status >= 400) {
-                setMesej("Emel atau kata laluan anda tidak benar");
+            if (log.status >= 400) {
+                const { nama, mesej } = res;
+                setMesej(`${nama}: ${mesej}`);
                 setHantar(false);
                 return;
             }
 
             // Log masuk berjaya
             // Mendapatkan kembali token & refresh token
-            const tokenPengesahan = await res.json();
+            const { token, refreshToken } = res;
 
             // Menyimpan nilai token dan refresh token dalam Local Storage
-            localStorage.setItem('token', tokenPengesahan.token);
-            localStorage.setItem('refreshToken', tokenPengesahan.refreshToken);
+            localStorage.setItem('token', token);
+            localStorage.setItem('refreshToken', refreshToken);
 
             // Navigasi ke laman utama pengguna
             nav('/urusmarkah');
@@ -61,14 +64,16 @@ export default function LogMasuk () {
 
         logMasuk();
         
-    }, [emel, kataLaluan, hantar, nav])
+    }, [emel, katalaluan, hantar, nav])
 
     return (
         <>
             <h2>Log Masuk</h2>
             <form onSubmit={hantarBorang}>
-                Emel<br /><input type='email' value={emel} onChange={(event) => setEmel(event.target.value)} /><br />
-                Kata laluan<br /><input type='password' value={kataLaluan} onChange={(event) => setKataLaluan(event.target.value)} /><br />
+
+                { /* Borang Log Masuk */ }
+                Emel <br /><input type='email' value={emel} onChange={(e) => setEmel(e.target.value)} /><br />
+                Kata laluan <br /><input type='password' value={katalaluan} onChange={(e) => setKatalaluan(e.target.value)} /><br />
                 <input type='submit' value='Hantar' /><br />
                 {mesej}
             </form>

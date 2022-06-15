@@ -14,19 +14,18 @@ export default function PengepalaPengesahan () {
             // Menvigasi ke laman utama jika pengguna telah log masuk
             if (!token) return;
             
-            const res = await fetch('http://localhost:5000/api/v1/pengguna/validasi', {
+            const res = await fetch('http://localhost:5000/api/v1/pengelola', {
                 method: 'GET',
                 headers: {
                     authorization: `Bearer ${token}`
                 }
             });
 
-            console.log(res.status)
             if (res.status >= 400) {
                 return;
             }
-            
-            nav('/pertandingan');
+
+            nav('/urusmarkah');
         }
 
         ujiPengesahan();
