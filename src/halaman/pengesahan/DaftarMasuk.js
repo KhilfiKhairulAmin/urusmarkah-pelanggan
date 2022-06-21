@@ -84,7 +84,7 @@ export default function DaftarMasuk () {
                     Emel <input type='email' value={emel} onChange={(e) => setEmel(e.target.value)}></input><br />
                     Nama Akaun <input type='text' value={namaAkaun} onChange={(e) => setNamaAkaun(e.target.value)}></input><br />
                     Nama Penuh <input type='text' value={namaPenuh} onChange={(e) => setNamaPenuh(e.target.value)} ></input><br />
-                    Kata laluan <input type='password' value={katalaluan} onChange={(e) => setKatalaluan(e.target.value)}></input><br />
+                    Katalaluan <input type='password' value={katalaluan} onChange={(e) => setKatalaluan(e.target.value)}></input><br />
                     <input type='submit' value='Submit' style={{
                         alignSelf: 'flex-end'
                     }}/>

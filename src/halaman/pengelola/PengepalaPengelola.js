@@ -11,13 +11,14 @@ export default function PengepalaPengguna () {
 
     return (
         <>
-        <title>Pertandingan</title>
         <KonteksPengelola.Provider value={pengelola} >
             <span style={{ display: 'flex', borderBottom: 'solid 1px' }}>
                 <Logo to='/urusmarkah' />   
             </span>
-            <span style={{ display: 'flex', flexDirection: 'column'}}>
-                <Link to='./kemas_kini'><label>Kemaskini Profil</label></Link>
+            <span style={{ display: 'flex', flexDirection: 'row', justifyContent: 'left'}}>
+                <Link to='/pengelola'>Profil</Link><div> | </div>
+                <Link to='./kemas_kini'>Kemaskini Profil</Link>
+                <Link to='./log_keluar'>Log Keluar</Link>
             </span>
             <Outlet />
         </KonteksPengelola.Provider>

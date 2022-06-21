@@ -2,9 +2,13 @@
     display: flex;
     flex-direction: row;
     border-bottom: 1px solid;
-    padding-bottom: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-top: 1rem;
 }
 
 label {
     flex-grow: 1;
 }
+
+@import url('http://fonts.cdnfonts.com/css/black-jack');

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom";
+import GambarCatur from '../../gambar/Pertandingan Promo Pengesahan.jpeg'
 
 export default function LogMasuk () {
 
@@ -44,8 +45,8 @@ export default function LogMasuk () {
             
             // Log masuk tidak berjaya
             if (log.status >= 400) {
-                const { nama, mesej } = res;
-                setMesej(`${nama}: ${mesej}`);
+                const { ralat, mesej } = res;
+                setMesej(`${ralat}: ${mesej}`);
                 setHantar(false);
                 return;
             }
@@ -64,19 +65,35 @@ export default function LogMasuk () {
 
         logMasuk();
         
-    }, [emel, katalaluan, hantar, nav])
+    }, [emel, katalaluan, hantar, nav]);
+
+    const input = "w3-input w3-border w3-round-xlarge";
 
     return (
         <>
-            <h2>Log Masuk</h2>
-            <form onSubmit={hantarBorang}>
-
-                { /* Borang Log Masuk */ }
-                Emel <br /><input type='email' value={emel} onChange={(e) => setEmel(e.target.value)} /><br />
-                Kata laluan <br /><input type='password' value={katalaluan} onChange={(e) => setKatalaluan(e.target.value)} /><br />
-                <input type='submit' value='Hantar' /><br />
-                {mesej}
-            </form>
+            <tr>
+                <td style={{
+                    'width':'75%',
+                    'verticalAlign':'middle'
+                }}>
+                <form onSubmit={hantarBorang} className="w3-container w3-text-deep-orange w3-large">
+                    <h2 className="w3-serif" style={{
+                        'fontWeight':'bold'
+                    }}>Log Masuk</h2>
+                    <div className="w3-serif">
+                    { /* Borang Log Masuk */ }
+                    <label className="w3-large">Emel: </label><br /><input className={input} type='email' value={emel} onChange={(e) => setEmel(e.target.value)} /><br />
+                    <label className="w3-large">Katalaluan: </label><br /><input className={input} type='password' value={katalaluan} onChange={(e) => setKatalaluan(e.target.value)} /><br />
+                    <input type='submit' value='Hantar' /><br />
+                    {mesej}
+                    </div>
+                </form>
+                </td>
+                <td style={{
+                }}>
+                    <img src={GambarCatur} alt='Pertandingan Catur' height='50%' />
+                </td>
+            </tr>
         </>
     )
 }

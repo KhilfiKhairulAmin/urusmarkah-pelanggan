@@ -1,0 +1,156 @@
+import { useContext, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import fetchLifecycle from "../../util/fetchLifecycle";
+import { KonteksPertandingan } from "./PengepalaPertandingan";
+
+export default function Tentang () {
+
+    const pertandingan = useContext(KonteksPertandingan);
+
+    const [ nama, setNama ] = useState(pertandingan.nama);
+    const [ deskripsi, setDeskripsi ] = useState('');
+    const [ tarikhPelaksanaan, setTarikhPelaksanaan ] = useState('');
+    const [ syarat, setSyarat ] = useState('');
+    const [ namaSumber, setNamaSumber ] = useState([]);
+    const [ urlSumber, setURLSumber ] = useState([])
+
+    const [ load, setLoad ] = useState(false)
+    const [ hantar, setHantar ] = useState(false);
+
+    const nav = useNavigate();
+    const { pertandingan: _id } = useParams();
+
+    const kemaskini = (e) => {
+        e.preventDefault();
+        setHantar(true);
+    }
+
+    useEffect(() => {
+
+        if (!nama) {
+            if (load) return;
+            const { sumber } = pertandingan.tentang || {};
+            const namaS = sumber && sumber.map((s) => s.nama);
+            const urlS = sumber && sumber.map((s) => s.url);
+            const { deskripsi: d, tarikhPelaksanaan: tP } = pertandingan.tentang || '';
+            const { syarat: s } = pertandingan.tentang || [];
+            setNama(pertandingan.nama);
+            setDeskripsi(deskripsi || d)
+            // setTarikhPelaksanaan(tarikhPelaksanaan || tP)
+            setSyarat(syarat || s)
+            setNamaSumber(namaS || [])
+            setURLSumber(urlS || [])
+
+            if (pertandingan.nama) {
+                setLoad(true)
+            }
+        }
+
+        if (!hantar) return
+
+        const hantarBorang = async () => {
+
+            const sumber = namaSumber.map((n, i) => {
+                return {
+                    nama: n,
+                    url: urlSumber[i]
+                }
+            });
+
+            const kemasKini = {
+                nama,
+                deskripsi,
+                syarat,
+                tarikhPelaksanaan,
+                sumber
+            }
+
+            console.log(kemasKini)
+
+            const maklumat = await fetchLifecycle(nav, `http://localhost:5000/api/v1/pertandingan/${_id}/kemas_kini`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type':'application/json'
+                },
+                body: JSON.stringify(kemasKini)
+            });
+
+            setHantar(false)
+
+            console.log(maklumat)
+
+            if (!maklumat.status) {
+                return
+            }
+
+            nav('../')
+        };
+
+        hantarBorang();
+    }, [_id, deskripsi, hantar, load, nama, namaSumber, nav, pertandingan, pertandingan.deskripsi, pertandingan.hadPeserta, pertandingan.nama, pertandingan.sumber, pertandingan.syarat, pertandingan.tarikhPelaksanaan, syarat, tarikhPelaksanaan, urlSumber])
+
+    return (
+        <>
+            <form onSubmit={kemaskini}>
+                Nama: <input type={'text'} value={nama} onChange={(e) => setNama(e.target.value)} />
+                <br />
+                Deskripsi: <input type={'text'} value={deskripsi} onChange={(e) => setDeskripsi(e.target.value)} />
+                <br />
+                Tarikh Pelaksanaan: <input type={'date'} value={tarikhPelaksanaan} onChange={(e) => setTarikhPelaksanaan(e.target.value)} />
+                <br />
+              
+                Syarat:
+                { syarat && syarat.map((s, i) =>
+                <><br /> {i + 1}. <input type={'text'} value={s} onChange={(e) => setSyarat(syarat.map((s, j) => {
+                    if (i === j) {
+                        s = e.target.value
+                    }
+                    return s;
+                }))} /></>)}
+                <br />
+                <input type='button' value={'+'} onClick={() => {
+                    setSyarat([...syarat, ''])
+                }} />
+                <input type={'button'} value='-' onClick={() => {
+                    const tolak = (syarat.length - 1) ? 1 : 0;
+                    setSyarat([...syarat].splice(0, syarat.length - tolak));
+                }} />
+                <br />
+           
+                Sumber: 
+                <br />
+                { namaSumber && namaSumber.map((s, i) => {
+                    return (<>{i + 1}. <br />
+                    Nama: <input type='text' value={s} onChange={(e) => setNamaSumber(namaSumber.map((s, j) => {
+                        if (i === j) {
+                            s = e.target.value;
+                        }
+                        return s;
+                    }))} />
+                    <br />
+                    URL: <input type='text' value={urlSumber[i]} onChange={(e) => setURLSumber(urlSumber.map((s, j) => {
+                        if (i === j) {
+                            s = e.target.value;
+                        }
+                        return s;
+                    }))} />
+                    <br />
+                    </>)
+                })}
+                <input type={'button'} value='+' onClick={() => {
+                    setNamaSumber([...namaSumber, '']);
+                    setURLSumber([...urlSumber, '']);
+                }} />
+                <input type={'button'} value='-' onClick={() => {
+                    const tolak = (namaSumber.length - 1) ? 1 : 0;
+                    setNamaSumber([...namaSumber].splice(0, namaSumber.length - tolak));
+                    setURLSumber([...urlSumber].splice(0, urlSumber.length - 1));
+                }} />
+                <br />
+                <br />
+                <input type='submit' value='Kemaskini' />
+                
+            </form>
+        </>
+    )
+}
