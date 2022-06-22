@@ -67,25 +67,37 @@ export default function PengepalaPengesahan () {
         ujiPengesahan();
     }, [nav]);
 
+    const butang = 'w3-hover-blue-gray w3-button w3-deep-orange w3-round w3-medium'
+
     return (
         <>
         <span className="Pengepala" style={{
-            'borderBottom':'0px'
+            'borderBottom':'0px',
+            flexGrow: 1
         }}>
-            <Logo />
+        <Logo />
+        <label></label>
+        <div >
+        {/* <Link style={{
+            marginRight: '4px'
+        }}  to={daftarMasuk}>
+            <button className={butang}>Daftar Masuk</button>
+        </Link>
+        <Link style={{
+            marginRight: '4px'
+        }} to={logMasuk}>
+            <button className={butang}>Log Masuk</button>
+        </Link> */}
+        <Link style={{
+            marginRight: '4px'
+        }} to={tukar}>
+            <button className={butang}>Akaun {teks}</button>
+        </Link>
+        </div>
         </span>
+        <br />
         <Outlet />
         <br></br>
-
-        <Link to={daftarMasuk}>
-            Daftar Masuk
-        </Link>
-        <label> | </label>
-        <Link to={logMasuk}>
-            Log Masuk
-        </Link>
-        <br />
-        <Link to={tukar}>Akaun {teks}</Link>
         </>
     )
 }

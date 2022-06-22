@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import GambarCatur from '../../gambar/Pertandingan Promo Pengesahan.jpeg'
 
 export default function LogMasuk () {
@@ -73,25 +73,36 @@ export default function LogMasuk () {
         <>
             <tr>
                 <td style={{
-                    'width':'75%',
+                    'width':'30%',
                     'verticalAlign':'middle'
                 }}>
                 <form onSubmit={hantarBorang} className="w3-container w3-text-deep-orange w3-large">
                     <h2 className="w3-serif" style={{
                         'fontWeight':'bold'
-                    }}>Log Masuk</h2>
+                    }}>Log Masuk<label style={{
+                        fontFamily: 'BlackJack'
+                    }}></label></h2>
                     <div className="w3-serif">
                     { /* Borang Log Masuk */ }
                     <label className="w3-large">Emel: </label><br /><input className={input} type='email' value={emel} onChange={(e) => setEmel(e.target.value)} /><br />
                     <label className="w3-large">Katalaluan: </label><br /><input className={input} type='password' value={katalaluan} onChange={(e) => setKatalaluan(e.target.value)} /><br />
-                    <input type='submit' value='Hantar' /><br />
+                    <input className="w3-round w3-button w3-deep-orange w3-hover-green" type='submit' value='Hantar' />
+                    <label> </label>
+                    <Link className="" to={'/pengesahan/daftar_masuk'}>
+                        Daftar Akaun Baharu
+                    </Link>
+                    <br />
                     {mesej}
                     </div>
                 </form>
                 </td>
                 <td style={{
+                    maxWidth: '100%',
+                    maxHeight: '100%'
                 }}>
-                    <img src={GambarCatur} alt='Pertandingan Catur' height='50%' />
+                    <img src={GambarCatur} alt='Pertandingan Catur' style={{
+                        verticalAlign: 'middle'
+                    }} className='w3-image' />
                 </td>
             </tr>
         </>
