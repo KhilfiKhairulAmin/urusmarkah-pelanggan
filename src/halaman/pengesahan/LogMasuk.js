@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom";
-import GambarCatur from '../../gambar/Pertandingan Promo Pengesahan.jpeg'
+import GambarCatur from '../../gambar/Profil 2.webp'
 
 export default function LogMasuk () {
 
@@ -87,9 +87,8 @@ export default function LogMasuk () {
                     <label className="w3-large">Emel: </label><br /><input className={input} type='email' value={emel} onChange={(e) => setEmel(e.target.value)} /><br />
                     <label className="w3-large">Katalaluan: </label><br /><input className={input} type='password' value={katalaluan} onChange={(e) => setKatalaluan(e.target.value)} /><br />
                     <input className="w3-round w3-button w3-deep-orange w3-hover-green" type='submit' value='Hantar' />
-                    <label> </label>
                     <Link className="" to={'/pengesahan/daftar_masuk'}>
-                        Daftar Akaun Baharu
+                        Belum mempunyai akaun?
                     </Link>
                     <br />
                     {mesej}

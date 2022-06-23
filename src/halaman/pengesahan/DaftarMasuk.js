@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom";
-import GambarPapanSkor from '../../gambar/Stadium Scoreboard.jpg'
+import { Link, useNavigate } from "react-router-dom";
+import GambarPapanSkor from '../../gambar/Profil.webp'
 
 export default function DaftarMasuk () {
 
@@ -81,10 +81,10 @@ export default function DaftarMasuk () {
             <form onSubmit={hantarBorang} className="w3-container w3-text-deep-orange w3-large">
                 <div className="w3-serif">
 
-                    <h3 style={{
+                    <h2 style={{
                         fontWeight: 'bold',
                         alignSelf: 'center'
-                    }} className="w3-serif">Daftar Akaun Baharu</h3>
+                    }} className="w3-serif">Daftar Akaun</h2>
 
                     { /* Borang Pendaftaran Pengelola */ }
                     <label className="w3-large">Emel</label> <input className={input} type='email' value={emel} onChange={(e) => setEmel(e.target.value)}></input><br />
@@ -94,6 +94,9 @@ export default function DaftarMasuk () {
                     <input className="w3-round w3-button w3-deep-orange w3-hover-green" type='submit' value='Hantar' style={{
                         alignSelf: 'flex-end'
                     }}/>
+                    <Link className="" to={'/pengesahan/log_masuk'}>
+                        Sudah mempunyai akaun?
+                    </Link>
 
                 </div>
             </form>

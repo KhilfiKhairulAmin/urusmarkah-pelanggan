@@ -2,7 +2,9 @@ import { createContext } from "react";
 import { Link, Outlet } from "react-router-dom";
 import useFetchProtected from "../../hooks/useFetchProtected";
 import Logo from "../../komponen/identiti/Logo";
-import ButangNav from "../../komponen/navigasi/butang/ButangNav";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
+import './Pengelola.css';
 
 export default function PengepalaUtama () {
     // const pertandingan = useFetchProtected('http://localhost:5000/api/v1/pertandingan', {});
@@ -14,12 +16,13 @@ export default function PengepalaUtama () {
         <>
         <KonteksPengelola.Provider value={pengelola} >
             {/* <KonteksPertandingan.Provider value={pertandingan}> */}
-            <span>
+            <span className="Pengepala" style={{
+                flexGrow: 1
+            }}>
                 <Logo to='/urusmarkah' />
-                <label style={{ flexGrow: 1}} />
-                
+                <label />
+                <Link className="w3-margin-right" to='/pengelola'><FontAwesomeIcon color="#ff5722" icon={faCircleUser} size='2xl' /></Link>
             </span>
-            <ButangNav to='/pengelola' buttonText={pengelola.namaAkaun}></ButangNav>
 
             <Outlet />
         {/* </KonteksPertandingan.Provider> */}

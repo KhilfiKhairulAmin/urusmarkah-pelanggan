@@ -10,18 +10,26 @@ export default function PengepalaPengesahan () {
     // Pengendali URL
     let logMasuk;
     let daftarMasuk;
-    let tukar, teks;
+    let tukar, teks, teksS;
 
     if (pathname === '/pengesahan/log_masuk' || pathname === '/pengesahan/daftar_masuk') {
         logMasuk = '/pengesahan/log_masuk';
         daftarMasuk = '/pengesahan/daftar_masuk';
-        tukar = '/pengesahan/daftar_masuk_peserta'
+
+        if (pathname === '/pengesahan/log_masuk') tukar = '/pengesahan/log_masuk_peserta'
+        else tukar = '/pengesahan/daftar_masuk_peserta'
+
+        teksS = 'Pengelola';
         teks = 'Peserta'
     }
     else {
         logMasuk = '/pengesahan/log_masuk_peserta';
         daftarMasuk = '/pengesahan/daftar_masuk_peserta';
-        tukar = '/pengesahan/daftar_masuk'
+
+        if (pathname === '/pengesahan/log_masuk_peserta') tukar = '/pengesahan/log_masuk'
+        else tukar = '/pengesahan/daftar_masuk'
+
+        teksS = 'Peserta'
         teks = 'Pengelola'
     }
 
@@ -75,7 +83,7 @@ export default function PengepalaPengesahan () {
             'borderBottom':'0px',
             flexGrow: 1
         }}>
-        <Logo />
+        <Logo jenis={teksS} />
         <label></label>
         <div >
         {/* <Link style={{
@@ -91,7 +99,7 @@ export default function PengepalaPengesahan () {
         <Link style={{
             marginRight: '4px'
         }} to={tukar}>
-            <button className={butang}>Akaun {teks}</button>
+            <button className={butang}>Ke Akaun {teks}</button>
         </Link>
         </div>
         </span>

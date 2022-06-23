@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import fetchLifecycle from '../../util/fetchLifecycle';
+import Competition2 from '../../gambar/Competition 2.jpg'
 
 export default function DaftarPeserta () {
     
@@ -56,14 +57,40 @@ export default function DaftarPeserta () {
         hantarBorang();
     });
 
+    const input = "w3-input w3-border w3-round-xlarge";
+
     return (
-        <form onSubmit={prahantar}>
-            Emel: <input type='email' value={emel} onChange={(e) => setEmel(e.target.value)} /><br />
-            Nama Akaun: <input type='text' value={namaAkaun} onChange={(e) => setNamaAkaun(e.target.value)} /><br />
-            Nama Penuh: <input type='text' value={namaPenuh} onChange={(e) => setNamaPenuh(e.target.value)} /><br />
-            No. Kad Pengenalan: <input type='text' value={noKP} onChange={(e) => setNoKP(e.target.value)} /><br />
-            Katalaluan: <input type='text' value={katalaluan} onChange={(e) => setKatalaluan(e.target.value)} /><br />
-            <input type='submit' value='Hantar' />
-        </form>
+        <>
+        <tr>
+        <td style={{
+                'width':'30%',
+                'verticalAlign':'middle'
+            }}>
+            <form onSubmit={prahantar} className="w3-container w3-text-deep-orange w3-large">
+                    <h2 style={{
+                        fontWeight: 'bold',
+                        alignSelf: 'center'
+                    }} className="w3-serif">Daftar Akaun</h2>
+
+            <label className="w3-large">Emel</label><br /><input className={input} type='email' value={emel} onChange={(e) => setEmel(e.target.value)} /><br />
+            <label className="w3-large">Nama Akaun</label><br /><input className={input} type='text' value={namaAkaun} onChange={(e) => setNamaAkaun(e.target.value)} /><br />
+            <label className="w3-large">Nama Penuh</label><br /><input className={input} type='text' value={namaPenuh} onChange={(e) => setNamaPenuh(e.target.value)} /><br />
+            <label className="w3-large">No. Kad Pengenalan</label><br /><input className={input} type='text' value={noKP} onChange={(e) => setNoKP(e.target.value)} /><br />
+            <label className="w3-large">Katalaluan</label><br /><input className={input} type='text' value={katalaluan} onChange={(e) => setKatalaluan(e.target.value)} /><br />
+            <input className="w3-round w3-button w3-deep-orange w3-hover-green" type='submit' value='Hantar' />
+            <Link className="" to={'/pengesahan/log_masuk_peserta'}>
+               Log Masuk Akaun
+            </Link>
+            </form>
+            </td>
+            <td style={{
+                maxWidth: '100%',
+                maxHeight: '100%'
+            }}>
+                <img src={Competition2} alt='Gambar Hiasan' className='w3-image'></img>
+
+            </td>
+        </tr>
+        </>
     )
 }
