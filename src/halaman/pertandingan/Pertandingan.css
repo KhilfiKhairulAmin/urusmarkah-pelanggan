@@ -12,3 +12,9 @@
     font-size: 30px;
     text-align: center;
   }
+
+.header-pertandingan {
+    background-image: url('../../gambar/BG\ Pertandingan\ Head.jpg');
+    background-repeat: no-repeat;
+    background-size: cover
+}

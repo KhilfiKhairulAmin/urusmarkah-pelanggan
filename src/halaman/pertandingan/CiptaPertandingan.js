@@ -45,7 +45,11 @@ export default function CiptaPertandingan () {
 
     return (
         <>
-            <form onSubmit={hantar}>
+        <div>
+            
+        </div>
+            <form onSubmit={hantar} style={{
+            }}>
                 <input type='text' onChange={(e) => setNama(e.target.value)}></input>
                 <input type='submit' value='Hantar'></input>
             </form>

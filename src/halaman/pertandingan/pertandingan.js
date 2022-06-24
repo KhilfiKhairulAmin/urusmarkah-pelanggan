@@ -67,18 +67,21 @@ export default function Pertandingan () {
 
     return (
         <>
-            <h2>{nama || 'Loading'}</h2>
-            <h6>#{_id}</h6>
-            Tarikh Dibuat: {cipta || 'Loading'}
-            <br />
-            Bil. Peserta: {(bilPeserta >= 0) ? bilPeserta : 'Loading'}
-            <br />
-            Status: {statusPertandingan(status) || 'Loading'}
-            <br />
-            { laksana ? `Dilaksanakan Pada: ${laksana}` : ''}
-            <br />
-            { tamat ? `Tamat Pada: ${tamat}` : ''}
-            <br />< hr />
+            <div className='header-pertandingan'>
+                <h2>{nama || 'Loading'}</h2>
+                <h6>#{_id}</h6>
+                Tarikh Dibuat: {cipta || 'Loading'}
+                <br />
+                Bil. Peserta: {(bilPeserta >= 0) ? bilPeserta : 'Loading'}
+                <br />
+                Status: {statusPertandingan(status) || 'Loading'}
+                <br />
+                { laksana ? `Dilaksanakan Pada: ${laksana}` : ''}
+                <br />
+                { tamat ? `Tamat Pada: ${tamat}` : ''}
+                <br />
+            </div>
+            < hr />
             Deskripsi: {deskripsi || 'Tiada'}
             <br />
             Tarikh Pelaksanaan: {tarikhPelaksanaan || 'Tidak Ditetapkan'}
