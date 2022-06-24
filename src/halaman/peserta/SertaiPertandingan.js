@@ -16,7 +16,8 @@ export default function SertaiPertandingan () {
     const [ aksi, setAksi ] = useState(0);
 
     const { cipta, laksana, tamat } = pertandingan.tarikhMasa || '';
-    const { nama, _id, status, bilPeserta, sudahSertai } = pertandingan || '';
+    const { nama, _id, status, bilPeserta, sudahSertai, pengelola } = pertandingan || '';
+    const { namaAkaun, _id: _id_pengelola } = pengelola || '';
     const { deskripsi, tarikhPelaksanaan, syarat, sumber } = pertandingan.tentang || '';
 
     useEffect(() => {
@@ -58,6 +59,7 @@ export default function SertaiPertandingan () {
         <>
             <h2>{nama || 'Loading'}</h2>
             <h6>#{_id}</h6>
+            Pengelola: <Link to={`${_id_pengelola}`}>{namaAkaun}</Link><br />
             Tarikh Dibuat: {cipta || 'Loading'}
             <br />
             Bil. Peserta: {(bilPeserta >= 0) ? bilPeserta : 'Loading'}

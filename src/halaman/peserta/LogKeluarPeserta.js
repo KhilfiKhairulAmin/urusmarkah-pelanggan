@@ -7,11 +7,10 @@ export default function LogKeluarPeserta () {
         method: 'PUT'
     });
 
-    localStorage.clear();
-
     const nav = useNavigate();
 
     if (logKeluar) {
         nav('/pengesahan/log_masuk_peserta');
+        localStorage.clear();
     }
 }
