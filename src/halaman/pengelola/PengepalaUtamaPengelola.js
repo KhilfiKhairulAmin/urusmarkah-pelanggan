@@ -21,7 +21,7 @@ export default function PengepalaUtama () {
             }}>
                 <Logo to='/urusmarkah' />
                 <label />
-                <Link className="w3-margin-right" to='/pengelola'><FontAwesomeIcon color="#ff5722" icon={faCircleUser} size='2xl' /></Link>
+                <Link className="w3-large w3-serif w3-margin-right" to='/pengelola'><FontAwesomeIcon color="#ff5722" icon={faCircleUser} size='2xl' /> {pengelola.namaAkaun}</Link>
             </span>
 
             <Outlet />

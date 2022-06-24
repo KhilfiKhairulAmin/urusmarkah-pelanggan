@@ -50,7 +50,7 @@ export default function LogMasukPeserta () {
         hantarBorang();
     }, [emel, hantar, katalaluan, nav])
 
-    const input = "w3-input w3-border w3-round-xlarge";
+    const input = "w3-input w3-border w3-round-xlarge w3-serif";
 
     return (
         <>
@@ -64,10 +64,10 @@ export default function LogMasukPeserta () {
                 fontWeight: 'bold',
                 alignSelf: 'center'
             }} className="w3-serif">Log Masuk</h2>
-                <label className="w3-large">Emel</label><br /><input className={input} type='text' value={emel} onChange={(e) => setEmel(e.target.value)} />< br/>
-                <label className="w3-large">Katalaluan</label><br /><input className={input} type='password' value={katalaluan} onChange={(e) => setKatalaluan(e.target.value)} />< br/>
-                <input className="w3-round w3-button w3-deep-orange w3-hover-green" type='submit' value='Hantar' />
-                <Link className="" to={'/pengesahan/daftar_masuk_peserta'}>
+                <label className="w3-large w3-serif">Emel</label><br /><input className={input} type='text' value={emel} onChange={(e) => setEmel(e.target.value)} />< br/>
+                <label className="w3-large w3-serif">Katalaluan</label><br /><input className={input} type='password' value={katalaluan} onChange={(e) => setKatalaluan(e.target.value)} />< br/>
+                <input className="w3-round w3-button w3-deep-orange w3-hover-green w3-serif" type='submit' value='Hantar' />
+                <Link className="w3-serif" to={'/pengesahan/daftar_masuk_peserta'}>
                     Sudah mempunyai akaun?
                 </Link>
             </form>

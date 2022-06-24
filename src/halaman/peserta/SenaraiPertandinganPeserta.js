@@ -8,13 +8,14 @@ export default function SenaraiPertandinganPeserta () {
 
     const papar = (pertandinganDimasuki && pertandinganDimasuki.map((p) => {
         const { pertandingan } = p
-        const { tarikhPelaksanaan } = pertandingan.tentang || 'Tidak Ditetapkan';
+        const { tentang, _id, nama, status } = pertandingan || 'Tidak Ditetapkan';
+        const { tarikhPelaksanaan } = tentang || 'Tiada';
         return (
             <>
-                <Link key={`${pertandingan._id}`} to={`../${pertandingan._id}`}><h2>{pertandingan.nama}</h2></Link>
+                <Link key={`${_id}`} to={`../${_id}`}><h2>{nama}</h2></Link>
                 Tarikh Pelaksanaan: {tarikhPelaksanaan || 'Tidak Ditetapkan'}
                 <br />
-                Status: {statusPertandingan(pertandingan.status) || 'Status tidak sah'}
+                Status: {statusPertandingan(status) || 'Status tidak sah'}
             </>
         )
     }))

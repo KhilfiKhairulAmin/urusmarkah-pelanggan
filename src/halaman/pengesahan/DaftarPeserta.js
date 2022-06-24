@@ -57,7 +57,7 @@ export default function DaftarPeserta () {
         hantarBorang();
     });
 
-    const input = "w3-input w3-border w3-round-xlarge";
+    const input = "w3-input w3-border w3-round-xlarge w3-serif";
 
     return (
         <>
@@ -72,13 +72,13 @@ export default function DaftarPeserta () {
                         alignSelf: 'center'
                     }} className="w3-serif">Daftar Akaun</h2>
 
-            <label className="w3-large">Emel</label><br /><input className={input} type='email' value={emel} onChange={(e) => setEmel(e.target.value)} /><br />
-            <label className="w3-large">Nama Akaun</label><br /><input className={input} type='text' value={namaAkaun} onChange={(e) => setNamaAkaun(e.target.value)} /><br />
-            <label className="w3-large">Nama Penuh</label><br /><input className={input} type='text' value={namaPenuh} onChange={(e) => setNamaPenuh(e.target.value)} /><br />
-            <label className="w3-large">No. Kad Pengenalan</label><br /><input className={input} type='text' value={noKP} onChange={(e) => setNoKP(e.target.value)} /><br />
-            <label className="w3-large">Katalaluan</label><br /><input className={input} type='text' value={katalaluan} onChange={(e) => setKatalaluan(e.target.value)} /><br />
-            <input className="w3-round w3-button w3-deep-orange w3-hover-green" type='submit' value='Hantar' />
-            <Link className="" to={'/pengesahan/log_masuk_peserta'}>
+            <label className="w3-large w3-serif">Emel</label><br /><input className={input} type='email' value={emel} onChange={(e) => setEmel(e.target.value)} /><br />
+            <label className="w3-large w3-serif">Nama Akaun</label><br /><input className={input} type='text' value={namaAkaun} onChange={(e) => setNamaAkaun(e.target.value)} /><br />
+            <label className="w3-large w3-serif">Nama Penuh</label><br /><input className={input} type='text' value={namaPenuh} onChange={(e) => setNamaPenuh(e.target.value)} /><br />
+            <label className="w3-large w3-serif">No. Kad Pengenalan</label><br /><input className={input} type='text' value={noKP} onChange={(e) => setNoKP(e.target.value)} /><br />
+            <label className="w3-large w3-serif">Katalaluan</label><br /><input className={input} type='password' value={katalaluan} onChange={(e) => setKatalaluan(e.target.value)} /><br />
+            <input className="w3-round w3-button w3-deep-orange w3-hover-green w3-serif" type='submit' value='Hantar' />
+            <Link className="w3-serif" to={'/pengesahan/log_masuk_peserta'}>
                Log Masuk Akaun
             </Link>
             </form>

@@ -33,6 +33,8 @@ export default function SenaraiPertandingan () {
                     Dicipta pada: {formatTarikh(p.tarikhMasa.cipta)}
                     </label>
                     <br />
+                <label className="w3-medium w3-left w3-serif">Bil. Peserta: {p.bilPeserta}</label>
+                <br />
                 <label className="w3-medium w3-left w3-serif"> Status: { statusPertandingan(p.status)}</label>
 
                 <br />
