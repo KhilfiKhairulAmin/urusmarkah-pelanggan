@@ -1,7 +1,7 @@
 import { faHourglassEnd, faPlay, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import fetchLifecycle from "../../util/fetchLifecycle";
 import formatTarikh from "../../util/formatTarikh";
 import statusPertandingan from "../../util/statusPertandingan";
@@ -89,7 +89,7 @@ export default function Pertandingan () {
             break
         }
         case 1: {
-            butang =     <button className="w3-btn w3-yellow w3-round-large w3-margin-right" onClick={() => {
+            butang = <button className="w3-btn w3-yellow w3-round-large w3-margin-right" onClick={() => {
                 setAksi(3);
             }}><FontAwesomeIcon icon={faHourglassEnd} /> Tamat</button>
             break
@@ -140,10 +140,10 @@ export default function Pertandingan () {
             { syarat && syarat.map((s, i) => <>{i + 1}. <label className="w3-justify" id={i}>{s}</label><br /></>)}
             <br />
             <h3>Sumber</h3>
+            <ul>
             { sumber && sumber.map((s, i) => <>
-            Nama: <label key={'n'+i}>{s.nama}</label>
-            <br />
-            URL: <a key={'u'+i} href={s.url}>{s.url}</a><br /></>)}
+            <li><a target={'_blank'} href={s.url} rel="noreferrer">{s.nama}</a></li></>)}
+            </ul>
             </div>
 
             <div className='w3-margin-left'>
