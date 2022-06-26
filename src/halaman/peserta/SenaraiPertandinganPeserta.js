@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import useFetchProtected from "../../hooks/useFetchProtected";
+import formatTarikh from "../../util/formatTarikh";
 import statusPertandingan from "../../util/statusPertandingan";
 
 export default function SenaraiPertandinganPeserta () {
@@ -12,10 +13,12 @@ export default function SenaraiPertandinganPeserta () {
         const { tarikhPelaksanaan } = tentang || 'Tiada';
         return (
             <>
-                <Link key={`${_id}`} to={`../${_id}`}><h2>{nama}</h2></Link>
-                Tarikh Pelaksanaan: {tarikhPelaksanaan || 'Tidak Ditetapkan'}
+            <div className="w3-border-bottom w3-border-gray">
+            <Link key={`${_id}`} to={`../${_id}`}><h2 style={{ fontFamily: 'BlackJack'}} className="w3-text-deep-orange">{nama}</h2></Link>
+                Tarikh Pelaksanaan: {formatTarikh(tarikhPelaksanaan) || 'Tidak Ditetapkan'}
                 <br />
                 Status: {statusPertandingan(status) || 'Status tidak sah'}
+            </div>
             </>
         )
     }))

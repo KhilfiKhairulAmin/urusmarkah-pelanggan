@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import useFetchProtected from "../../hooks/useFetchProtected";
+import formatTarikh from "../../util/formatTarikh";
 
 export default function SenaraiPertandinganTerkini () {
 
@@ -12,10 +13,12 @@ export default function SenaraiPertandinganTerkini () {
 
         return (
             <>
-                <Link to={`../${p._id}`}><h2>{p.nama}</h2></Link>
-                Tarikh Pelaksanaan: {tarikhPelaksanaan || 'Tidak Ditetapkan'}
-                <br />
-                Bil Peserta: {p.bilPeserta || 0}
+            <div className="w3-border-bottom w3-border-gray">
+            <Link to={`../${p._id}`}><h2 style={{ fontFamily: 'BlackJack'}} className="w3-text-deep-orange">{p.nama}</h2></Link>
+            Tarikh Pelaksanaan: {formatTarikh(tarikhPelaksanaan) || 'Tidak Ditetapkan'}
+            <br />
+            Bil Peserta: {p.bilPeserta || 0}
+            </div>
             </>
         )
     }))

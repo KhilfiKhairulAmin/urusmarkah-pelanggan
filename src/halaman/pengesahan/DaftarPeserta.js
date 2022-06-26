@@ -45,7 +45,7 @@ export default function DaftarPeserta () {
             if (maklumat.status) {
                 localStorage.setItem('session', maklumat.session)
 
-                nav('/markah')
+                nav('/markah/terkini')
 
                 return;
             }

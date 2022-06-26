@@ -26,7 +26,6 @@ export default function SenaraiPeserta () {
                     <td>{peserta.namaPenuh}</td>
                     <td>{peserta.emel}</td>
                 </tr>
-
                 )
             })}
         </table>

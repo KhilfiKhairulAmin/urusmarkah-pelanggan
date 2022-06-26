@@ -139,7 +139,7 @@ export default function Pertandingan () {
             <h3>Syarat</h3>
             { syarat && syarat.map((s, i) => <>{i + 1}. <label className="w3-justify" id={i}>{s}</label><br /></>)}
             <br />
-            <h3>Sumber</h3>
+            <h3>Pautan</h3>
             <ul>
             { sumber && sumber.map((s, i) => <>
             <li><a target={'_blank'} href={s.url} rel="noreferrer">{s.nama}</a></li></>)}
