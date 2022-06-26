@@ -46,13 +46,15 @@ export default function CiptaPertandingan () {
     return (
         <>
         <div>
-            
-        </div>
-            <form onSubmit={hantar} style={{
+        <form className="w3-text-deep-orange w3-margin w3-xlarge w3-serif" onSubmit={hantar} style={{
             }}>
-                <input type='text' onChange={(e) => setNama(e.target.value)}></input>
-                <input type='submit' value='Hantar'></input>
+                <h1 style={{
+                    fontWeight: 'bold'
+                }} className="w3-serif">Cipta Pertandingan</h1>
+                <input className="w3-input w3-text-deep-orange" placeholder="Nama Pertandingan" type='text' onChange={(e) => setNama(e.target.value)}></input>
+                <input className="w3-round w3-button w3-deep-orange w3-hover-green w3-serif w3-margin-top" type='submit' value='Cipta'></input>
             </form>
+        </div>
         </>
     )
 }

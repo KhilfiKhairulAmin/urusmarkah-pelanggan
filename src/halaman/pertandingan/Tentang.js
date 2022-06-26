@@ -1,3 +1,5 @@
+import { faGear, faGears, faWrench } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import fetchLifecycle from "../../util/fetchLifecycle";
@@ -91,27 +93,30 @@ export default function Tentang () {
 
     return (
         <>
-            <form onSubmit={kemaskini}>
-                Nama: <input type={'text'} value={nama} onChange={(e) => setNama(e.target.value)} />
+            <form onSubmit={kemaskini} className='w3-margin w3-container w3-text-deep-orange w3-serif w3-large'>
+                Nama: <input className="w3-input w3-light-gray" type={'text'} value={nama} onChange={(e) => setNama(e.target.value)} />
                 <br />
-                Deskripsi: <input type={'text'} value={deskripsi} onChange={(e) => setDeskripsi(e.target.value)} />
+                Deskripsi<br />
+                <textarea style={{
+                    height: '200px'
+                }} className="w3-input w3-light-gray" value={deskripsi} onChange={(e) => setDeskripsi(e.target.value)} />
                 <br />
-                Tarikh Pelaksanaan: <input type={'date'} value={tarikhPelaksanaan} onChange={(e) => setTarikhPelaksanaan(e.target.value)} />
+                Tarikh Pelaksanaan: <input className="w3-input w3-light-gray" type={'date'} value={tarikhPelaksanaan} onChange={(e) => setTarikhPelaksanaan(e.target.value)} />
                 <br />
               
                 Syarat:
                 { syarat && syarat.map((s, i) =>
-                <><br /> {i + 1}. <input type={'text'} value={s} onChange={(e) => setSyarat(syarat.map((s, j) => {
+                <><br /> {i + 1}. <input className="w3-input w3-light-gray" type={'text'} value={s} onChange={(e) => setSyarat(syarat.map((s, j) => {
                     if (i === j) {
                         s = e.target.value
                     }
                     return s;
                 }))} /></>)}
                 <br />
-                <input type='button' value={'+'} onClick={() => {
+                <input className="w3-small w3-btn w3-deep-orange w3-round-large w3-margin-bottom w3-margin-right" type='button' value={'+'} onClick={() => {
                     setSyarat([...syarat, ''])
                 }} />
-                <input type={'button'} value='-' onClick={() => {
+                <input className="w3-small w3-btn w3-deep-orange w3-round-large w3-margin-bottom w3-margin-right" type={'button'} value='-' onClick={() => {
                     const tolak = (syarat.length - 1) ? 1 : 0;
                     setSyarat([...syarat].splice(0, syarat.length - tolak));
                 }} />
@@ -121,14 +126,14 @@ export default function Tentang () {
                 <br />
                 { namaSumber && namaSumber.map((s, i) => {
                     return (<>{i + 1}. <br />
-                    Nama: <input type='text' value={s} onChange={(e) => setNamaSumber(namaSumber.map((s, j) => {
+                    Nama: <input className="w3-input w3-light-gray" type='text' value={s} onChange={(e) => setNamaSumber(namaSumber.map((s, j) => {
                         if (i === j) {
                             s = e.target.value;
                         }
                         return s;
                     }))} />
                     <br />
-                    URL: <input type='text' value={urlSumber[i]} onChange={(e) => setURLSumber(urlSumber.map((s, j) => {
+                    URL: <input className="w3-input w3-light-gray" type='text' value={urlSumber[i]} onChange={(e) => setURLSumber(urlSumber.map((s, j) => {
                         if (i === j) {
                             s = e.target.value;
                         }
@@ -137,18 +142,18 @@ export default function Tentang () {
                     <br />
                     </>)
                 })}
-                <input type={'button'} value='+' onClick={() => {
+                <input className="w3-small w3-btn w3-deep-orange w3-round-large w3-margin-bottom w3-margin-right" type={'button'} value='+' onClick={() => {
                     setNamaSumber([...namaSumber, '']);
                     setURLSumber([...urlSumber, '']);
                 }} />
-                <input type={'button'} value='-' onClick={() => {
+                <input className="w3-small w3-btn w3-deep-orange w3-round-large w3-margin-bottom w3-margin-right" type={'button'} value='-' onClick={() => {
                     const tolak = (namaSumber.length - 1) ? 1 : 0;
                     setNamaSumber([...namaSumber].splice(0, namaSumber.length - tolak));
-                    setURLSumber([...urlSumber].splice(0, urlSumber.length - 1));
+                    setURLSumber([...urlSumber].splice(0, urlSumber.length - tolak));
                 }} />
                 <br />
                 <br />
-                <input type='submit' value='Kemaskini' />
+                <button type="submit" className="w3-button w3-hover-blue w3-deep-orange w3-round-large w3-margin-bottom w3-margin-right"><FontAwesomeIcon icon={faGear} /> Simpan</button>
                 
             </form>
         </>

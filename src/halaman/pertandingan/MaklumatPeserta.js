@@ -9,9 +9,11 @@ export default function MaklumatPeserta () {
 
     return (
         <>
-            <h2>{namaPenuh}</h2>
-            <h4>{namaAkaun}</h4>
-            <h6>#{_id}</h6>
+        <div className="w3-margin">
+            <h2 className="w3-serif w3-text-deep-orange">{namaPenuh}</h2>
+            <h4 className="w3-serif w3-text-deep-orange">{namaAkaun}</h4>
+            <h6 className="w3-serif w3-text-deep-orange">#{_id}</h6>
+        </div>
         </>
     )
 }

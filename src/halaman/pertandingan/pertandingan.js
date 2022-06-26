@@ -1,6 +1,9 @@
+import { faHourglassEnd, faPlay, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import fetchLifecycle from "../../util/fetchLifecycle";
+import formatTarikh from "../../util/formatTarikh";
 import statusPertandingan from "../../util/statusPertandingan";
 import { KonteksPertandingan } from "./PengepalaPertandingan";
 
@@ -22,7 +25,9 @@ export default function Pertandingan () {
         setHantar(true)
     }
 
-    let penghapusan = (aksi === 2) ? (<form onSubmit={hapuskan}><input type='text' value={pengesahan} onChange={(e) => setPengesahan(e.target.value)} /><input type='submit' value='Hapus' /></form>) : (<></>)
+    let penghapusan = (aksi === 2) ? (<form onSubmit={hapuskan}><input style={{
+        width: '20%'
+    }} className="w3-border-red w3-input w3-text-red" placeholder="Nama Pertandingan" type='text' value={pengesahan} onChange={(e) => setPengesahan(e.target.value)} /><input className="w3-red w3-button w3-hover-amber w3-round-large" type='submit' value='Sah' /></form>) : (<></>)
 
     useEffect(() => {
 
@@ -36,7 +41,7 @@ export default function Pertandingan () {
                         method: 'PUT'
                     });
 
-                    if (laksana.status) nav('./urus');
+                    if (laksana.status) nav('./urusmarkah');
 
                     break
                 }
@@ -56,6 +61,15 @@ export default function Pertandingan () {
                     setHantar(false)
                     break;
                 }
+                case 3: {
+                    const tamat = await fetchLifecycle(nav, `http://localhost:5000/api/v1/urusmarkah/tamat/${_idp}`, {
+                        method: 'DELETE'
+                    });
+
+                    if (tamat.status) nav('./keputusan');
+
+                    break
+                }
                 default: {
                     return
                 }
@@ -65,45 +79,75 @@ export default function Pertandingan () {
         kendaliAksi();
     }, [_idp, aksi, hantar, nav, pengesahan])
 
+    let butang;
+
+    switch (status) {
+        case 0: {
+            butang = (<button className="w3-btn w3-green w3-round-large w3-margin-right" onClick={() => {
+                setAksi(1);
+            }}><FontAwesomeIcon icon={faPlay} /> Laksana</button>)
+            break
+        }
+        case 1: {
+            butang =     <button className="w3-btn w3-yellow w3-round-large w3-margin-right" onClick={() => {
+                setAksi(3);
+            }}><FontAwesomeIcon icon={faHourglassEnd} /> Tamat</button>
+            break
+        }
+        case 2: {
+            butang = (<></>)
+            break
+        }
+        default: {
+            butang = (<></>)
+        }
+    }
+
     return (
         <>
-            <div className='header-pertandingan'>
-                <h2>{nama || 'Loading'}</h2>
-                <h6>#{_id}</h6>
-                Tarikh Dibuat: {cipta || 'Loading'}
-                <br />
-                Bil. Peserta: {(bilPeserta >= 0) ? bilPeserta : 'Loading'}
-                <br />
-                Status: {statusPertandingan(status) || 'Loading'}
-                <br />
-                { laksana ? `Dilaksanakan Pada: ${laksana}` : ''}
-                <br />
-                { tamat ? `Tamat Pada: ${tamat}` : ''}
-                <br />
+            <div className='header-pertandingan w3-serif w3-text-white w3-large'>
+                <div className='w3-margin-left w3-margin-top'>
+                    <h2 className='w3-serif w3-xxlarge'>{nama || 'Loading'}</h2>
+                    <h6>#{_id}</h6>
+                    Tarikh Dibuat: {formatTarikh(cipta) || 'Loading'}
+                    <br />
+                    Bil. Peserta: {(bilPeserta >= 0) ? bilPeserta : 'Loading'}
+                    <br />
+                    Status: {statusPertandingan(status) || 'Loading'}
+                    <br />
+                    { laksana ? `Dilaksanakan Pada: ${formatTarikh(laksana)}` : ''}
+                    <br />
+                    { tamat ? `Tamat Pada: ${formatTarikh(tamat)}` : ''}
+                    <br />
+                    <div style={{
+                        position: 'relative',
+                        top: '-10px'
+                    }}>
+                        {butang}
+                    <button className="w3-btn w3-red w3-round-large" onClick={() => {
+                        setAksi(2); 
+                    }}><FontAwesomeIcon icon={faTrash} /> Hapus</button>{penghapusan}
+                    </div>
+                </div>
             </div>
-            < hr />
-            Deskripsi: {deskripsi || 'Tiada'}
+
+            <div className='w3-serif w3-margin-left w3-large'>
+            <h3 className="w3-justify">Deskripsi</h3> {deskripsi || 'Tiada deskripsi'}
             <br />
-            Tarikh Pelaksanaan: {tarikhPelaksanaan || 'Tidak Ditetapkan'}
+            <h3>Tarikh Pelaksanaan</h3>{formatTarikh(tarikhPelaksanaan) || 'Tidak Ditetapkan'}
             <br />
-            Syarat:
-            { syarat && syarat.map((s, i) => <><br />{i + 1}. <label id={i}>{s}</label> </>)}
+            <h3>Syarat</h3>
+            { syarat && syarat.map((s, i) => <>{i + 1}. <label className="w3-justify" id={i}>{s}</label><br /></>)}
             <br />
-            Sumber:
-            <br />
+            <h3>Sumber</h3>
             { sumber && sumber.map((s, i) => <>
-            {i+1}. 
-            <br />
             Nama: <label key={'n'+i}>{s.nama}</label>
             <br />
             URL: <a key={'u'+i} href={s.url}>{s.url}</a><br /></>)}
-            <button onClick={() => {
-                setAksi(1);
-            }}>Laksana</button>
-                        <button onClick={() => {
-                 setAksi(2);
-                
-            }}>Hapus</button>{penghapusan}
+            </div>
+
+            <div className='w3-margin-left'>
+            </div>
         </>
     )
 

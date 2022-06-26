@@ -39,14 +39,16 @@ export default function SenaraiPertandingan () {
                     position: 'relative',
                     top: '8px'
                 }} />
-                <input placeholder='Carian pertandingan...' className="w3-round-large w3-animate-input w3-input w3-border w3-text-deep-orange" style={{
-                width: '400px'
+                <input type={'text'} placeholder='Carian Pertandingan' className="w3-border-dark-gray w3-round w3-animate-input w3-input w3-border w3-text-deep-orange" style={{
+                width: '33.5%',
+                position: 'relative',
+                left: '12px'
             }} onChange={(e) => setQuery(e.target.value)} />
                 </span>
             </div>
             <label />
-            <Link className='w3-margin' to='cipta'>
-                <button className='w3-button w3-hover-blue w3-deep-orange w3-round-medium w3-serif'>
+            <Link className='w3-margin w3-large' to='cipta'>
+                <button className='w3-btn w3-deep-orange w3-round-medium w3-serif'>
                 <FontAwesomeIcon icon={faPlusCircle} size='xl' style={{ marginRight: '6px'}} />
                     Anjur Pertandingan
                 </button>
@@ -54,21 +56,23 @@ export default function SenaraiPertandingan () {
         </span>
         <div className='grid-container w3-margin w3-serif'>
         { (pertandingan && pertandingan.map((p) => (
-            <div className='grid-item w3-center w3-round-jumbo w3-deep-orange w3-round-xlarge'>
+            <div className='w3-large grid-item w3-center w3-round-jumbo w3-deep-orange w3-round-xlarge'>
                 <Link to={p._id} style={{
                     textDecoration: 'none'
                 }}><h2 className="w3-deep-orange w3-xxlarge" style={{
                     fontFamily: 'BlackJack'
                 }}>{p.nama}</h2></Link>
-                <label className="w3-medium w3-left w3-serif">
+                <div className="w3-large">
+                <label className="w3-large w3-left w3-serif">
                     Dicipta pada: {formatTarikh(p.tarikhMasa.cipta)}
                     </label>
                     <br />
-                <label className="w3-medium w3-left w3-serif">Bil. Peserta: {p.bilPeserta}</label>
+                <label className="w3-large w3-medium w3-left w3-serif">Bil. Peserta: {p.bilPeserta}</label>
                 <br />
-                <label className="w3-medium w3-left w3-serif"> Status: { statusPertandingan(p.status)}</label>
+                <label className="w3-large w3-medium w3-left w3-serif"> Status: { statusPertandingan(p.status)}</label>
 
                 <br />
+                </div>
             </div>
         ))) || 'Loading'}
         </div>

@@ -50,6 +50,7 @@ export default function useFetchProtected ( url, init ) {
                 console.log(fetchToken)
 
                 if (fetchToken.status >= 400) {
+                    localStorage.clear();
                     nav('/pengesahan/log_masuk');
                     return;
                 }

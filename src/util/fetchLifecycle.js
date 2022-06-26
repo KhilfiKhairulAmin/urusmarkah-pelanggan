@@ -11,6 +11,7 @@ export default async function fetchLifecycle (nav, url, init) {
         }
 
         if (!localStorage.getItem('token')) {
+            console.log('here')
             const session = localStorage.getItem('session');
 
             if (!session) nav('/pengesahan/log_masuk_peserta');

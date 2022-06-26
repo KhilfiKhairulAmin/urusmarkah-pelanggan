@@ -29,6 +29,7 @@ import LogKeluarPeserta from './halaman/peserta/LogKeluarPeserta';
 import PesertaPertandingan from './halaman/pertandingan/PesertaPertandingan';
 import PapanPeserta from './halaman/peserta/PapanPeserta';
 import Urusmarkah from './halaman/pertandingan/Urusmarkah';
+import KeputusanPertandingan from './halaman/pertandingan/KeputusanPertandingan';
 
 function App() {
   return (
@@ -56,6 +57,7 @@ function App() {
           <Route path='tentang' element={<Tentang />} />
           <Route path=':peserta' element={<PesertaPertandingan />} />
           <Route path='urusmarkah' element={<Urusmarkah />} />
+          <Route path='keputusan' element={<KeputusanPertandingan />} />
       </Route>
       </Route>
 

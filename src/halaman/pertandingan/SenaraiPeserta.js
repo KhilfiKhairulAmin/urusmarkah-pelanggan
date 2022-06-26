@@ -9,12 +9,27 @@ export default function SenaraiPeserta () {
 
     return (
         <>
+        <table className="w3-table-all w3-margin w3-serif w3-large">
+            <tr className="w3-deep-orange">
+                <th>Bil.</th>
+                <th>Akaun</th>
+                <th>Nama Penuh</th>
+                <th>Emel</th>
+            </tr>
             { peserta && peserta.map((p, i) => {
             const { peserta } = p;
             return (
-                <>{i+1}. <Link to={`../${peserta._id}`}><label>{peserta.namaPenuh}</label></Link><br />{peserta.namaAkaun}<br /></>
+
+                <tr>
+                    <td>{i+1}</td>
+                    <td><Link to={`../${peserta._id}`}>{peserta.namaAkaun}</Link></td>
+                    <td>{peserta.namaPenuh}</td>
+                    <td>{peserta.emel}</td>
+                </tr>
+
                 )
             })}
+        </table>
         </>
     )
 }

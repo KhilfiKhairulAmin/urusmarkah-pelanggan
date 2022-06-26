@@ -65,12 +65,12 @@ export default function BorangKemaskini () {
 
     return (
         <>
-        <form onSubmit={hantarBorang}>
-            Nama Akaun: <input type='text' value={namaAkaun} onChange={(e) => setNamaAkaun(e.target.value)} /><br />
-            Nama Penuh: <input type='text' value={namaPenuh} onChange={(e) => setNamaPenuh(e.target.value)} /><br />
-            Katalaluan Lama: <input type='text' value={katalaluanLama} onChange={(e) => setKatalaluanLama(e.target.value)} /><br />
-            Katalaluan Baharu: <input type='text' value={katalaluanBaharu} onChange={(e) => setKatalaluanBaharu(e.target.value)} /><br />
-            <input type='submit' value={'Kemaskini'} />
+        <form onSubmit={hantarBorang} className='w3-margin w3-container w3-text-deep-orange w3-serif w3-large'>
+            Nama Akaun: <input className="w3-input w3-light-gray" type='text' value={namaAkaun} onChange={(e) => setNamaAkaun(e.target.value)} /><br />
+            Nama Pengelola: <input className="w3-input w3-light-gray" type='text' value={namaPenuh} onChange={(e) => setNamaPenuh(e.target.value)} /><br />
+            Katalaluan Lama: <input className="w3-input w3-light-gray" type='password' value={katalaluanLama} onChange={(e) => setKatalaluanLama(e.target.value)} /><br />
+            Katalaluan Baharu: <input className="w3-input w3-light-gray" type='password' value={katalaluanBaharu} onChange={(e) => setKatalaluanBaharu(e.target.value)} /><br />
+            <input className="w3-button w3-hover-amber w3-deep-orange w3-round-large w3-margin-bottom w3-margin-right" type='submit' value={'Kemaskini'} />
         </form>
         </>
     )

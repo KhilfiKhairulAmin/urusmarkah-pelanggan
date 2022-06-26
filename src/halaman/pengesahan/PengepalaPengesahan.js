@@ -52,7 +52,7 @@ export default function PengepalaPengesahan () {
                 });
 
                 if (res.status === 200) {
-                    nav('/markah');
+                    nav('/markah/pertandingan');
                 }
 
                 return;
