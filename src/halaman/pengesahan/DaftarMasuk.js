@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import GambarPapanSkor from '../../gambar/Profil.webp'
 
 export default function DaftarMasuk () {
 
@@ -68,29 +69,51 @@ export default function DaftarMasuk () {
 
     }, [emel, katalaluan, namaAkaun, hantar, nav, namaPenuh])
 
+    const input = "w3-input w3-border w3-round-xlarge";
+
     return (
         <>
-            <form onSubmit={hantarBorang}>
-                <div style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    marginLeft: '1rem',
-                    marginRight: '70%'
-                }}>
+        <tr>
+            <td style={{
+                width: '30%',
+                verticalAlign: 'middle'
+            }}>
+            <form onSubmit={hantarBorang} className="w3-container w3-text-deep-orange w3-large">
+                <div className="w3-serif">
 
-                    <h3 style={{ alignSelf: 'center'}}>Daftar Akaun Baharu</h3>
+                    <h2 style={{
+                        fontWeight: 'bold',
+                        alignSelf: 'center'
+                    }} className="w3-serif">Daftar Akaun</h2>
 
                     { /* Borang Pendaftaran Pengelola */ }
-                    Emel <input type='email' value={emel} onChange={(e) => setEmel(e.target.value)}></input><br />
-                    Nama Akaun <input type='text' value={namaAkaun} onChange={(e) => setNamaAkaun(e.target.value)}></input><br />
-                    Nama Penuh <input type='text' value={namaPenuh} onChange={(e) => setNamaPenuh(e.target.value)} ></input><br />
-                    Kata laluan <input type='password' value={katalaluan} onChange={(e) => setKatalaluan(e.target.value)}></input><br />
-                    <input type='submit' value='Submit' style={{
+                    {/* Emel mesti mempunyai huruf '@' */}
+                    <label className="w3-large">Emel</label> <input className={input} type='email' value={emel} onChange={(e) => setEmel(e.target.value)}></input><br />
+                    {/* Nama Akaun tidak boleh melebihi 40 huruf */}
+                    <label className="w3-large">Nama Akaun</label> <input className={input} type='text' value={namaAkaun} onChange={(e) => setNamaAkaun(e.target.value)}></input><br />
+                    {/* Nama Penuh tidak boleh melebihi 255 huruf */}
+                    <label className="w3-large">Nama Penuh</label> <input className={input} type='text' value={namaPenuh} onChange={(e) => setNamaPenuh(e.target.value)} ></input><br />
+                    {/* Katalaluan tidak boleh kosong */}
+                    <label className="w3-large">Katalaluan</label> <input className={input} type='password' value={katalaluan} onChange={(e) => setKatalaluan(e.target.value)}></input><br />
+                    <input className="w3-round w3-button w3-deep-orange w3-hover-green" type='submit' value='Hantar' style={{
                         alignSelf: 'flex-end'
                     }}/>
 
+                    {/* Navigasi ke laman log masuk */}
+                    <Link className="" to={'/pengesahan/log_masuk'}>
+                        Sudah mempunyai akaun?
+                    </Link>
+
                 </div>
             </form>
+            </td>
+            <td>
+                <img style={{
+                    maxWidth: '100%',
+                    maxHeight: '100%'
+                }} src={GambarPapanSkor} alt='Gambar Papan Skor' className="w3-image"></img>
+            </td>
+        </tr>
         </>
     )
 }

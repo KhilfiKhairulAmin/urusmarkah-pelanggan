@@ -1,0 +1,19 @@
+.grid-container {
+    display: grid;
+    gap: 5% 5%;
+    grid-template-columns: 30% 30% 30%;
+}
+
+.grid-item {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    font-size: 30px;
+    text-align: center;
+  }
+
+.header-pertandingan {
+    background-image: url('../../gambar/BG\ Pertandingan\ Head.jpg');
+    background-repeat: no-repeat;
+    background-size: cover
+}
