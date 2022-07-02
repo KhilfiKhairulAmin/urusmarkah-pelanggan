@@ -24,20 +24,20 @@ export default function BorangKemaskini () {
             setNamaPenuh(pengelola.namaPenuh || '')
         }
 
-        const hantarBorang = async () => {
+        // const hantarBorang = async () => {
 
-            const pengelola = {
-                namaAkaun,
-                namaPenuh
-            }
+        //     const pengelola = {
+        //         namaAkaun,
+        //         namaPenuh
+        //     }
 
-            const res = await fetch('http://localhost:5000/api/v1/pengelola/kemas_kini', {
-                method: 'PUT',
+        //     const res = await fetch('http://localhost:5000/api/v1/pengelola/kemas_kini', {
+        //         method: 'PUT',
                 
-            })
-        }
+        //     })
+        // }
 
-    }, [hantar, namaAkaun, namaPenuh, pengelola])
+    }, [hantar, pengelola])
 
     return (
         <>
