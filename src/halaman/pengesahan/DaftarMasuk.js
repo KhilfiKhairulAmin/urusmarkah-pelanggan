@@ -62,6 +62,7 @@ export default function DaftarMasuk () {
             localStorage.setItem('refreshToken', refreshToken);
 
             // Navigasi ke laman utama pengguna
+            alert('Pendaftaran berjaya');
             nav(`/urusmarkah`);
         }
 
