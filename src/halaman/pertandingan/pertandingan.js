@@ -1,7 +1,7 @@
 import { faHourglassEnd, faPlay, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext, useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import fetchLifecycle from "../../util/fetchLifecycle";
 import formatTarikh from "../../util/formatTarikh";
 import statusPertandingan from "../../util/statusPertandingan";
@@ -132,7 +132,7 @@ export default function Pertandingan () {
             </div>
 
             <div className='w3-serif w3-margin-left w3-large'>
-            <h3 className="w3-justify">Deskripsi</h3> {deskripsi || 'Tiada deskripsi'}
+            <h3>Deskripsi</h3><div className="w3-justify w3-xlarge">{deskripsi || 'Tiada deskripsi'}</div>
             <br />
             <h3>Tarikh Pelaksanaan</h3>{formatTarikh(tarikhPelaksanaan) || 'Tidak Ditetapkan'}
             <br />
