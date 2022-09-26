@@ -14,7 +14,6 @@ export default function SenaraiPeserta () {
         <input className="w3-margin" accept=".json" type={'file'} onChange={(e) => {
 
             const hantarPeserta = async (text) => {
-                console.log(text)
                 const res = await fetchLifecycle(nav, `http://localhost:5000/api/v1/pertandingan/${pertandingan}/cipta`, {
                     method: 'POST',
                     body: text,
@@ -31,7 +30,6 @@ export default function SenaraiPeserta () {
             const reader = new FileReader();
             reader.onload = (e) => {
                 const text = e.target.result;
-                console.log(text)
 
                 hantarPeserta(text);
             }

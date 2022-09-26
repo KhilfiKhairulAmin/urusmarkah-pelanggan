@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
-import fetchLifecycle from '../../util/fetchLifecycle';
 import Competition2 from '../../gambar/Competition 2.jpg'
 
 export default function DaftarPeserta () {
@@ -10,6 +9,7 @@ export default function DaftarPeserta () {
     const [ namaPenuh, setNamaPenuh ] = useState('');
     const [ noKP, setNoKP ] = useState('');
     const [ katalaluan, setKatalaluan] = useState('');
+    const [ mesej, setMesej ] = useState('')
 
     const [ hantar, setHantar ] = useState(false);
 
@@ -34,7 +34,7 @@ export default function DaftarPeserta () {
 
         const hantarBorang = async () => {
 
-            const maklumat = await fetchLifecycle(nav, 'http://localhost:5000/api/v1/peserta/daftar', {
+            const maklumat = await fetch('http://localhost:5000/api/v1/peserta/daftar', {
                 method: 'POST',
                 headers: {
                     'Content-Type':'application/json'
@@ -42,12 +42,19 @@ export default function DaftarPeserta () {
                 body: JSON.stringify(peserta)
             });
 
-            if (maklumat.status) {
-                localStorage.setItem('session', maklumat.session)
+            const data = await maklumat.json()
+
+
+
+            if (maklumat.status === 200) {
+                localStorage.setItem('session', data.session)
 
                 nav('/markah/terkini')
 
                 return;
+            }
+            else {
+                setMesej(`${data.ralat}: ${data.mesej}`)
             }
             setHantar(false)
 
@@ -77,6 +84,7 @@ export default function DaftarPeserta () {
             <label className="w3-large w3-serif">Nama Penuh</label><br /><input className={input} type='text' value={namaPenuh} onChange={(e) => setNamaPenuh(e.target.value)} /><br />
             <label className="w3-large w3-serif">No. Kad Pengenalan</label><br /><input className={input} type='text' value={noKP} onChange={(e) => setNoKP(e.target.value)} /><br />
             <label className="w3-large w3-serif">Katalaluan</label><br /><input className={input} type='password' value={katalaluan} onChange={(e) => setKatalaluan(e.target.value)} /><br />
+            {mesej ? <><label className='w3-serif'>{mesej}</label><br /></> : <></>}
             <input className="w3-round w3-button w3-deep-orange w3-hover-green w3-serif" type='submit' value='Hantar' />
             <Link className="w3-serif" to={'/pengesahan/log_masuk_peserta'}>
                Log Masuk Akaun

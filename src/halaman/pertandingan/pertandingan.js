@@ -1,7 +1,7 @@
 import { faHourglassEnd, faPlay, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext, useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import fetchLifecycle from "../../util/fetchLifecycle";
 import formatTarikh from "../../util/formatTarikh";
 import statusPertandingan from "../../util/statusPertandingan";

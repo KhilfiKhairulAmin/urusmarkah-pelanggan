@@ -1,4 +1,4 @@
-import { faGear, faGears, faWrench } from "@fortawesome/free-solid-svg-icons";
+import { faGear } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -34,11 +34,10 @@ export default function Tentang () {
             const { sumber } = pertandingan.tentang || {};
             const namaS = sumber && sumber.map((s) => s.nama);
             const urlS = sumber && sumber.map((s) => s.url);
-            const { deskripsi: d, tarikhPelaksanaan: tP } = pertandingan.tentang || '';
+            const { deskripsi: d } = pertandingan.tentang || '';
             const { syarat: s } = pertandingan.tentang || [];
             setNama(pertandingan.nama);
             setDeskripsi(deskripsi || d)
-            // setTarikhPelaksanaan(tarikhPelaksanaan || tP)
             setSyarat(syarat || s)
             setNamaSumber(namaS || [])
             setURLSumber(urlS || [])
@@ -67,8 +66,6 @@ export default function Tentang () {
                 sumber
             }
 
-            console.log(kemasKini)
-
             const maklumat = await fetchLifecycle(nav, `http://localhost:5000/api/v1/pertandingan/${_id}/kemas_kini`, {
                 method: 'PUT',
                 headers: {
@@ -79,7 +76,7 @@ export default function Tentang () {
 
             setHantar(false)
 
-            console.log(maklumat)
+
 
             if (!maklumat.status) {
                 return

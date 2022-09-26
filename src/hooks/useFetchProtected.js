@@ -20,8 +20,6 @@ export default function useFetchProtected ( url, init ) {
 
                 const maklumat = await res.json();
 
-                console.log(maklumat);
-
                 if (res.status === 200) {
                     setMaklumatFetch(maklumat);
                     return;
@@ -46,8 +44,6 @@ export default function useFetchProtected ( url, init ) {
                         authorization: `Bearer ${localStorage.getItem('refreshToken')}`
                     }
                 });
-
-                console.log(fetchToken)
 
                 if (fetchToken.status >= 400) {
                     localStorage.clear();

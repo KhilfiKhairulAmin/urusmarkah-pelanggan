@@ -6,8 +6,6 @@ export default function SenaraiPertandinganTerkini () {
 
     const pertandinganTerkini = useFetchProtected('http://localhost:5000/api/v1/peserta/pertandingan_terkini', {});
 
-    console.log(pertandinganTerkini)
-
     const papar = (pertandinganTerkini && pertandinganTerkini.map((p) => {
         const { tarikhPelaksanaan } = p.tentang || 'Tidak Ditetapkan';
 

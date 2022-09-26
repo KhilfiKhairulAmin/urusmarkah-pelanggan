@@ -1,8 +1,7 @@
-import { fa1, faCircle, faMedal } from "@fortawesome/free-solid-svg-icons";
+import { faMedal } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import useFetchProtected from "../../hooks/useFetchProtected";
 import fetchLifecycle from "../../util/fetchLifecycle";
 
 export default function Urusmarkah () {
@@ -43,7 +42,6 @@ export default function Urusmarkah () {
                 })
             });
 
-            console.log(maklumat)
 
             setPeserta(maklumat)
         }
@@ -62,7 +60,6 @@ export default function Urusmarkah () {
 
         const kemaskiniMarkah = async () => {
 
-            console.log(urusm)
 
             const kemaskini = await fetchLifecycle(nav, `http://localhost:5000/api/v1/urusmarkah/${_idp}`, {
                 method: 'PUT',
@@ -71,8 +68,6 @@ export default function Urusmarkah () {
                 },
                 body: JSON.stringify(urusm)
             });
-
-            console.log(kemaskini)
 
             setHantar(false);
             setPeserta(kemaskini);

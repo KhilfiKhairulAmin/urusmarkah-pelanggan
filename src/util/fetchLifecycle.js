@@ -11,7 +11,6 @@ export default async function fetchLifecycle (nav, url, init) {
         }
 
         if (!localStorage.getItem('token')) {
-            console.log('here')
             const session = localStorage.getItem('session');
 
             if (!session) nav('/pengesahan/log_masuk_peserta');
@@ -21,8 +20,6 @@ export default async function fetchLifecycle (nav, url, init) {
             const res = await fetch(url, Init);
 
             const maklumat = await res.json();
-
-            console.log(maklumat);
 
             maklumat.status = true;
 
@@ -38,8 +35,6 @@ export default async function fetchLifecycle (nav, url, init) {
     
         if (res.status >= 400) {
             maklumat.status = false;
-
-            console.log(maklumat)
 
             // Token expired
             if (maklumat.ralat === 'TokenExpiredError' || maklumat.ralat === 'JsonWebTokenError') {
