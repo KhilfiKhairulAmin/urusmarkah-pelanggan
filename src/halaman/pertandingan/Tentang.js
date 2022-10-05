@@ -38,7 +38,6 @@ export default function Tentang () {
             const { syarat: s } = pertandingan.tentang || [];
             setNama(pertandingan.nama);
             setDeskripsi(deskripsi || d)
-            // setTarikhPelaksanaan(tarikhPelaksanaan || tP)
             setSyarat(syarat || s)
             setNamaSumber(namaS || [])
             setURLSumber(urlS || [])
@@ -67,8 +66,6 @@ export default function Tentang () {
                 sumber
             }
 
-            console.log(kemasKini)
-
             const maklumat = await fetchLifecycle(nav, `http://localhost:5000/api/v1/pertandingan/${_id}/kemas_kini`, {
                 method: 'PUT',
                 headers: {
@@ -79,7 +76,7 @@ export default function Tentang () {
 
             setHantar(false)
 
-            console.log(maklumat)
+
 
             if (!maklumat.status) {
                 return

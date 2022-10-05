@@ -42,7 +42,6 @@ export default function Urusmarkah () {
                 })
             });
 
-            console.log(maklumat)
 
             setPeserta(maklumat)
         }
@@ -61,7 +60,6 @@ export default function Urusmarkah () {
 
         const kemaskiniMarkah = async () => {
 
-            console.log(urusm)
 
             const kemaskini = await fetchLifecycle(nav, `http://localhost:5000/api/v1/urusmarkah/${_idp}`, {
                 method: 'PUT',
@@ -70,8 +68,6 @@ export default function Urusmarkah () {
                 },
                 body: JSON.stringify(urusm)
             });
-
-            console.log(kemaskini)
 
             setHantar(false);
             setPeserta(kemaskini);
