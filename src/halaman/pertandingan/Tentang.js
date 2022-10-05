@@ -34,7 +34,7 @@ export default function Tentang () {
             const { sumber } = pertandingan.tentang || {};
             const namaS = sumber && sumber.map((s) => s.nama);
             const urlS = sumber && sumber.map((s) => s.url);
-            const { deskripsi: d, tarikhPelaksanaan: tP } = pertandingan.tentang || '';
+            const { deskripsi: d } = pertandingan.tentang || '';
             const { syarat: s } = pertandingan.tentang || [];
             setNama(pertandingan.nama);
             setDeskripsi(deskripsi || d)

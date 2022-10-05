@@ -1,8 +1,7 @@
-import { fa1, faCircle, faMedal } from "@fortawesome/free-solid-svg-icons";
+import { faMedal } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import useFetchProtected from "../../hooks/useFetchProtected";
 import fetchLifecycle from "../../util/fetchLifecycle";
 
 export default function Urusmarkah () {

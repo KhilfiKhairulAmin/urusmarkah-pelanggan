@@ -132,7 +132,7 @@ export default function Pertandingan () {
             </div>
 
             <div className='w3-serif w3-margin-left w3-large'>
-            <h3>Deskripsi</h3><div className="w3-justify w3-xlarge">{deskripsi || 'Tiada deskripsi'}</div>
+            <h3>Deskripsi</h3><div className="w3-justify">{deskripsi || 'Tiada deskripsi'}</div>
             <br />
             <h3>Tarikh Pelaksanaan</h3>{formatTarikh(tarikhPelaksanaan) || 'Tidak Ditetapkan'}
             <br />

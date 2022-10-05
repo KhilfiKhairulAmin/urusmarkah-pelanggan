@@ -1,7 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlusCircle, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Link, useNavigate } from "react-router-dom";
-import useFetchProtected from "../../hooks/useFetchProtected";
 import './Pertandingan.css'
 import formatTarikh from "../../util/formatTarikh";
 import statusPertandingan from "../../util/statusPertandingan";
@@ -54,9 +53,9 @@ export default function SenaraiPertandingan () {
                 </button>
             </Link>
         </span>
-        <div className='grid-container w3-margin w3-serif'>
-        { (pertandingan && pertandingan.map((p) => (
-            <div className='w3-large grid-item w3-center w3-round-jumbo w3-deep-orange w3-round-xlarge'>
+        <div className='grid-container w3-margin w3-serif w3-center'>
+        { 'Loading' && (pertandingan && pertandingan.map((p) => (
+            <div className='w3-large grid-item w3-center w3-round-jumbo w3-deep-orange w3-round-xlarge w3-border-orange w3-hover-border-khaki w3-border'>
                 <Link to={p._id} style={{
                     textDecoration: 'none'
                 }}><h2 className="w3-deep-orange w3-xxlarge" style={{
@@ -65,8 +64,8 @@ export default function SenaraiPertandingan () {
                 <div className="w3-large">
                 <label className="w3-large w3-left w3-serif">
                     Dicipta pada: {formatTarikh(p.tarikhMasa.cipta)}
-                    </label>
-                    <br />
+                </label>
+                <br />
                 <label className="w3-large w3-medium w3-left w3-serif">Bil. Peserta: {p.bilPeserta}</label>
                 <br />
                 <label className="w3-large w3-medium w3-left w3-serif"> Status: { statusPertandingan(p.status)}</label>
@@ -74,7 +73,7 @@ export default function SenaraiPertandingan () {
                 <br />
                 </div>
             </div>
-        ))) || 'Loading'}
+        )))}
         </div>
         </>
     )
