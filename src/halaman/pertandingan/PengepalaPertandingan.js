@@ -16,7 +16,7 @@ export default function PengepalaPertandingan () {
 
     const pertandingan = useFetchProtected(`http://localhost:5000/api/v1/pertandingan/${_id}`);
 
-    const butang = 'w3-margin-left w3-button w3-hover-light-grey w3-round-xlarge'
+    const butang = 'w3-margin-left w3-button hoverGray w3-round-xlarge'
     const butangCondition = 'w3-margin-left w3-button w3-deep-orange w3-hover-deep-orange w3-round-xlarge'
 
     return (
@@ -29,7 +29,10 @@ export default function PengepalaPertandingan () {
             { (pertandingan.status === 2) ? <></> : <Link to={'tentang'}><button className={((tentang) ? butangCondition : butang)}>Konfigurasi</button></Link>}
             { (pertandingan.status === 1) ? <Link to={'urusmarkah'}><button className={((urusmarkah) ? butangCondition : butang)}>Urusmarkah</button></Link> : <></>}
             { (pertandingan.status === 2) ? <Link to={'keputusan'}><button className={((keputusan) ? butangCondition : butang)}>Keputusan</button></Link> : <></>}
-            <br /><Outlet />
+            <br />
+            <div id="bg">
+            <Outlet />
+            </div>
         </KonteksPertandingan.Provider>
         </>
     )

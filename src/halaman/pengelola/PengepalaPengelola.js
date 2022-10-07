@@ -15,7 +15,7 @@ export default function PengepalaPengguna () {
     const profil = useMatch(url);
     const kemaskini = useMatch(url + '/kemas_kini');
 
-    const butang = 'w3-margin-left w3-button w3-hover-khaki w3-round-xlarge'
+    const butang = 'w3-margin-left w3-button hoverGray w3-round-xlarge'
     const butangCondition = 'w3-deep-orange w3-hover-deep-orange'
 
     return (

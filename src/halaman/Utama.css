@@ -1,3 +1,5 @@
+@import url('http://fonts.cdnfonts.com/css/black-jack');
+
 .Pengepala {
     display: flex;
     flex-direction: row;
@@ -11,4 +13,24 @@ label {
     flex-grow: 1;
 }
 
-@import url('http://fonts.cdnfonts.com/css/black-jack');
+#title {
+    color: orangered;
+    text-align: center;
+    font-size: 4rem;
+    font-family: 'BlackJack'
+}
+
+#content {
+    font-size: 1.5rem;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: justify;
+}
+
+#container {
+    display: flex;
+    flex-direction: row;
+    margin-top: 5%;
+    justify-content: center;
+    margin-left: 25%;
+    margin-right: 25%;
+}

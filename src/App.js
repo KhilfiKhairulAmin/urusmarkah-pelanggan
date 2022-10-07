@@ -1,5 +1,4 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import SenaraiAkaun from './halaman/SenaraiAkaun';
 import DaftarMasuk from './halaman/pengesahan/DaftarMasuk';
 import LogMasuk from './halaman/pengesahan/LogMasuk';
 import CiptaPertandingan from './halaman/pertandingan/CiptaPertandingan';
@@ -36,9 +35,7 @@ function App() {
   <BrowserRouter>
     <Routes>
     
-      <Route path='/' element={<Utama />}>
-        <Route path='senarai' element={<SenaraiAkaun />} />
-      </Route>
+      <Route path='/' element={<Utama />}></Route>
 
       <Route path='/pengesahan' element={<PengepalaPengesahan />}>
         <Route path='daftar_masuk' element={<DaftarMasuk />} />

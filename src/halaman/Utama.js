@@ -1,4 +1,4 @@
-import { Link, Outlet } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Logo from '../komponen/identiti/Logo';
 import './Utama.css';
 import 'w3-css/w3.css';
@@ -8,7 +8,17 @@ export default function Utama () {
     return (
         <>
             <Pengepala />
-            <Outlet />
+            <span id="container">
+                {/* <div>
+                    Hello
+                </div> */}
+                <div>
+                    <div id="title"><b>Selamat Datang!</b></div>
+                    <div id="content">
+                        Sistem Urusmarkah ialah sebuah sistem pengurusan markah pertandingan yang <b>dinamik</b> dan <b>efisien</b> untuk memenuhi keperluan pengelolaan pertandingan anda!
+                    </div>
+                </div>
+            </span>
         </>
     )
 }
