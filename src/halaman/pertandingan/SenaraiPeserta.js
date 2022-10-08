@@ -24,7 +24,7 @@ export default function SenaraiPeserta () {
                 });
 
                 alert(res.mesej)
-                peserta = res
+                window.location.reload();
             }
 
             e.preventDefault();
