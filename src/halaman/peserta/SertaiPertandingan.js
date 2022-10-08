@@ -1,12 +1,11 @@
-import { faArrowTurnDown, faCheckCircle, faCircleXmark, faDoorOpen, faLightbulb, faMedal, faPersonWalkingArrowRight, faRightToBracket } from "@fortawesome/free-solid-svg-icons";
+import { faArrowTurnDown, faCircleXmark, faMedal } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useContext, useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import useFetchProtected from "../../hooks/useFetchProtected";
 import fetchLifecycle from "../../util/fetchLifecycle";
 import formatTarikh from "../../util/formatTarikh";
 import statusPertandingan from "../../util/statusPertandingan";
-import { KonteksPeserta } from "./PengepalaUtamaPeserta";
 
 export default function SertaiPertandingan () {
 
@@ -20,7 +19,7 @@ export default function SertaiPertandingan () {
 
     const { cipta, laksana, tamat } = pertandingan.tarikhMasa || '';
     const { nama, _id, status, bilPeserta, sudahSertai, pengelola } = pertandingan || '';
-    const { namaAkaun, _id: _id_pengelola } = pengelola || '';
+    const { namaAkaun } = pengelola || '';
     const { deskripsi, tarikhPelaksanaan, syarat, sumber } = pertandingan.tentang || '';
 
     useEffect(() => {
@@ -28,7 +27,7 @@ export default function SertaiPertandingan () {
         const kendaliAksi = async () => {
             switch (aksi) {
                 case 2: {
-                    const keluar = await fetchLifecycle(nav, `http://localhost:5000/api/v1/peserta/${_id}/keluar`, {
+                    await fetchLifecycle(nav, `http://localhost:5000/api/v1/peserta/${_id}/keluar`, {
                         method: 'POST'
                     });
                     
@@ -38,7 +37,7 @@ export default function SertaiPertandingan () {
                     break
                 }
                 case 1: {
-                    const serta = await fetchLifecycle(nav, `http://localhost:5000/api/v1/peserta/${_id}/sertai`, {
+                    await fetchLifecycle(nav, `http://localhost:5000/api/v1/peserta/${_id}/sertai`, {
                         method: 'POST'
                     })
 
