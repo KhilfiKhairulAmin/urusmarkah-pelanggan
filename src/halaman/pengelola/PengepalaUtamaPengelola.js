@@ -23,8 +23,9 @@ export default function PengepalaUtama () {
                 <label />
                 <Link className="w3-large w3-serif w3-margin-right" to='/pengelola'><FontAwesomeIcon color="#ff5722" icon={faCircleUser} size='2xl' /> {pengelola.namaAkaun}</Link>
             </span>
-
-            <Outlet />
+            <div id="bg">
+                <Outlet />
+            </div>
         {/* </KonteksPertandingan.Provider> */}
         </KonteksPengelola.Provider>
         </>

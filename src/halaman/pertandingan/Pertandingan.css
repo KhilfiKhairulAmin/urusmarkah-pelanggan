@@ -6,14 +6,47 @@
 
 .grid-item {
     background-color: rgba(255, 255, 255, 0.8);
-    border: 1px solid rgba(0, 0, 0, 0.8);
+    border: 3px solid rgba(0, 0, 0, 0.8);
     padding: 20px;
     font-size: 30px;
     text-align: center;
+    
   }
 
 .header-pertandingan {
     background-image: url('../../gambar/BG\ Pertandingan\ Head.jpg');
     background-repeat: no-repeat;
     background-size: cover
+}
+
+.status {
+    display: flex;
+    width: 30%;
+    margin-top: 10px;
+    justify-content: space-around;
+}
+
+.hoverPertandingan div {
+    color: white;
+    background-color: orangered;
+}
+
+/* .hoverPertandingan {
+    border: 1px solid orangered;
+    border-radius: 20px;
+} */
+
+.hoverPertandingan:hover div, .hoverPertandingan:hover {
+    color: orangered;
+    background-color: white;
+}
+
+.infoPertandingan {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hoverGray:hover {
+    background-color: lightslategrey;
 }

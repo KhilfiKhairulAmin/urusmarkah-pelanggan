@@ -16,20 +16,23 @@ export default function PengepalaPertandingan () {
 
     const pertandingan = useFetchProtected(`http://localhost:5000/api/v1/pertandingan/${_id}`);
 
-    const butang = 'w3-margin-left w3-button w3-hover-khaki w3-round-xlarge'
-    const butangCondition = 'w3-deep-orange w3-hover-deep-orange'
+    const butang = 'w3-margin-left w3-button hoverGray w3-round-xlarge'
+    const butangCondition = 'w3-margin-left w3-button w3-deep-orange w3-hover-deep-orange w3-round-xlarge'
 
     return (
         <>
         <br />
         <KonteksPertandingan.Provider value={pertandingan} >
 
-            <Link to={''}><button className={((papanPemuka) ? butangCondition : '') + ` ${butang}`} >Papan Pemuka</button></Link>
-            <Link to={'peserta'}><button className={((peserta) ? butangCondition : '') + ` ${butang}`}>Peserta</button></Link>
-            { (pertandingan.status === 2) ? <></> : <Link to={'tentang'}><button className={((tentang) ? butangCondition : '') + ` ${butang}`}>Konfigurasi</button></Link>}
-            { (pertandingan.status === 1) ? <Link to={'urusmarkah'}><button className={((urusmarkah) ? butangCondition : '') + ` ${butang}`}>Urusmarkah</button></Link> : <></>}
-            { (pertandingan.status === 2) ? <Link to={'keputusan'}><button className={((keputusan) ? butangCondition : '') + ` ${butang}`}>Keputusan</button></Link> : <></>}
-            <br /><Outlet />
+            <Link to={''}><button className={((papanPemuka) ? butangCondition : butang)} >Papan Pemuka</button></Link>
+            <Link to={'peserta'}><button className={((peserta) ? butangCondition : butang)}>Peserta</button></Link>
+            { (pertandingan.status === 2) ? <></> : <Link to={'tentang'}><button className={((tentang) ? butangCondition : butang)}>Konfigurasi</button></Link>}
+            { (pertandingan.status === 1) ? <Link to={'urusmarkah'}><button className={((urusmarkah) ? butangCondition : butang)}>Urusmarkah</button></Link> : <></>}
+            { (pertandingan.status === 2) ? <Link to={'keputusan'}><button className={((keputusan) ? butangCondition : butang)}>Keputusan</button></Link> : <></>}
+            <br />
+            <div id="bg">
+            <Outlet />
+            </div>
         </KonteksPertandingan.Provider>
         </>
     )

@@ -13,8 +13,8 @@ export default function SenaraiPertandinganPeserta () {
         const { tarikhPelaksanaan } = tentang || 'Tiada';
         return (
             <>
-            <div className="w3-border-bottom w3-border-gray">
-            <Link key={`${_id}`} to={`../${_id}`}><h2 style={{ fontFamily: 'BlackJack'}} className="w3-text-deep-orange">{nama}</h2></Link>
+            <div className=" w3-padding-bottom w3-border-bottom w3-border-gray">
+            <Link style={{ textDecoration: 'none' }} key={`${_id}`} to={`../${_id}`}><h2 style={{ fontFamily: 'BlackJack' }} className="w3-text-deep-orange">{nama}</h2></Link>
                 Tarikh Pelaksanaan: {formatTarikh(tarikhPelaksanaan) || 'Tidak Ditetapkan'}
                 <br />
                 Status: {statusPertandingan(status) || 'Status tidak sah'}

@@ -4,17 +4,18 @@ import fetchLifecycle from '../../util/fetchLifecycle'
 
 export default function SenaraiPeserta () {
     
-    const { pertandingan } = useParams();
+    const { pertandingan: id_pertandingan } = useParams();
     const nav = useNavigate()
 
-    const peserta = useFetchProtected(`http://localhost:5000/api/v1/pertandingan/${pertandingan}/peserta`)
+    let peserta = useFetchProtected(`http://localhost:5000/api/v1/pertandingan/${id_pertandingan}/peserta`)
+    const pertandingan = useFetchProtected(`http://localhost:5000/api/v1/pertandingan/${id_pertandingan}`)
 
     return (
         <>
-        <input className="w3-margin" accept=".json" type={'file'} onChange={(e) => {
+        { pertandingan.status === 0 &&(<><div className="w3-margin"><button onClick={(e) => document.getElementById("upload").click()}>Muat Naik Peserta (Fail JSON)</button><input id="upload" style={{ display: 'none'}} className="w3-margin" accept=".json" type={'file'} onChange={(e) => {
 
             const hantarPeserta = async (text) => {
-                const res = await fetchLifecycle(nav, `http://localhost:5000/api/v1/pertandingan/${pertandingan}/cipta`, {
+                const res = await fetchLifecycle(nav, `http://localhost:5000/api/v1/pertandingan/${id_pertandingan}/cipta`, {
                     method: 'POST',
                     body: text,
                     headers: {
@@ -23,7 +24,7 @@ export default function SenaraiPeserta () {
                 });
 
                 alert(res.mesej)
-                new Location().reload()
+                peserta = res
             }
 
             e.preventDefault();
@@ -34,8 +35,9 @@ export default function SenaraiPeserta () {
                 hantarPeserta(text);
             }
             reader.readAsText(e.target.files[0]);
-        }} />
+        }} /></div></>)}
         <table className="w3-table-all w3-margin w3-serif w3-large">
+            <tbody>
             <tr className="w3-deep-orange">
                 <th>Bil.</th>
                 <th>Akaun</th>
@@ -54,6 +56,7 @@ export default function SenaraiPeserta () {
                 </tr>
                 )
             })}
+            </tbody>
         </table>
         </>
     )

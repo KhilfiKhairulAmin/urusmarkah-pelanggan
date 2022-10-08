@@ -78,9 +78,9 @@ export default function SertaiPertandingan () {
             <br />
             Status: {statusPertandingan(status) || 'Loading'}
             <br />
-            { laksana ? `Dilaksanakan Pada: ${laksana}` : ''}
+            { laksana ? `Dilaksanakan Pada: ${formatTarikh(laksana)}` : ''}
             <br />
-            { tamat ? `Tamat Pada: ${tamat}` : ''}
+            { tamat ? `Tamat Pada: ${formatTarikh(tamat)}` : ''}
             <br />
             </div>
         </div>

@@ -8,13 +8,10 @@ export default function PengepalaPengesahan () {
     const { pathname} = useLocation();
 
     // Pengendali URL
-    let logMasuk;
-    let daftarMasuk;
     let tukar, teks, teksS;
 
     if (pathname === '/pengesahan/log_masuk' || pathname === '/pengesahan/daftar_masuk') {
-        logMasuk = '/pengesahan/log_masuk';
-        daftarMasuk = '/pengesahan/daftar_masuk';
+
 
         if (pathname === '/pengesahan/log_masuk') tukar = '/pengesahan/log_masuk_peserta'
         else tukar = '/pengesahan/daftar_masuk_peserta'
@@ -23,8 +20,7 @@ export default function PengepalaPengesahan () {
         teks = 'Peserta'
     }
     else {
-        logMasuk = '/pengesahan/log_masuk_peserta';
-        daftarMasuk = '/pengesahan/daftar_masuk_peserta';
+
 
         if (pathname === '/pengesahan/log_masuk_peserta') tukar = '/pengesahan/log_masuk'
         else tukar = '/pengesahan/daftar_masuk'

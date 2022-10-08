@@ -12,7 +12,7 @@ export default function SenaraiPertandinganTerkini () {
         return (
             <>
             <div className="w3-border-bottom w3-border-gray">
-            <Link to={`../${p._id}`}><h2 style={{ fontFamily: 'BlackJack'}} className="w3-text-deep-orange">{p.nama}</h2></Link>
+            <Link style={{ textDecoration: 'none' }} to={`../${p._id}`}><h2 style={{ fontFamily: 'BlackJack'}} className="w3-text-deep-orange">{p.nama}</h2></Link>
             Tarikh Pelaksanaan: {formatTarikh(tarikhPelaksanaan) || 'Tidak Ditetapkan'}
             <br />
             Bil Peserta: {p.bilPeserta || 0}

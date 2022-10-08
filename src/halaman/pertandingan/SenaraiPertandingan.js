@@ -1,29 +1,29 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlusCircle, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Link, useNavigate } from "react-router-dom";
-import useFetchProtected from "../../hooks/useFetchProtected";
 import './Pertandingan.css'
 import formatTarikh from "../../util/formatTarikh";
 import statusPertandingan from "../../util/statusPertandingan";
 import { useEffect, useState } from "react";
-import fetchLifecycle from '../../util/fetchLifecycle'
+import fetchLifecycle from '../../util/fetchLifecycle';
+import RadioButton from '../../komponen/navigasi/RadioButton';
 
 export default function SenaraiPertandingan () {
 
-    const [ query, setQuery ] = useState('');
+    const [ carianNama, setCarianNama ] = useState('');
+    const [ carianStatus, setCarianStatus ] = useState('');
     const [ pertandingan, setPertandingan ] = useState([])
 
     const nav = useNavigate()
     
     useEffect(() => {
         const refetch = async () => {
-            const maklumat = await fetchLifecycle(nav, `http://localhost:5000/api/v1/pertandingan?nama=${query}`, {});
-
+            const maklumat = await fetchLifecycle(nav, `http://localhost:5000/api/v1/pertandingan?nama=${carianNama}&status=${carianStatus}`, {});
             setPertandingan(maklumat)
         }
 
         refetch()
-    }, [nav, query])
+    }, [nav, carianNama, carianStatus])
 
     return (
         <>
@@ -43,7 +43,29 @@ export default function SenaraiPertandingan () {
                 width: '33.5%',
                 position: 'relative',
                 left: '12px'
-            }} onChange={(e) => setQuery(e.target.value)} />
+            }} onChange={(e) => setCarianNama(e.target.value)} />
+                </span>
+                <span className="status">
+                        <RadioButton
+                        label="Semua"
+                        value={carianStatus === ''}
+                        onChange={(e) => setCarianStatus('')}
+                         />
+                        <RadioButton
+                        label="Belum Mula"
+                        value={carianStatus === '0'}
+                        onChange={(e) => setCarianStatus('0')}
+                         />
+                        <RadioButton
+                        label="Berlangsung"
+                        value={carianStatus === '1'}
+                        onChange={(e) => setCarianStatus('1')}
+                         />
+                        <RadioButton
+                        label="Tamat"
+                        value={carianStatus === '2'}
+                        onChange={(e) => setCarianStatus('2')}
+                         />
                 </span>
             </div>
             <label />
@@ -54,27 +76,23 @@ export default function SenaraiPertandingan () {
                 </button>
             </Link>
         </span>
-        <div className='grid-container w3-margin w3-serif'>
-        { (pertandingan && pertandingan.map((p) => (
-            <div className='w3-large grid-item w3-center w3-round-jumbo w3-deep-orange w3-round-xlarge'>
-                <Link to={p._id} style={{
-                    textDecoration: 'none'
-                }}><h2 className="w3-deep-orange w3-xxlarge" style={{
+        <div className='grid-container w3-margin w3-serif w3-center'>
+        { 'Loading' && (pertandingan && pertandingan.map((p) => (
+            <Link to={p._id} style={{
+                textDecoration: 'none'
+            }} className="hoverPertandingan">
+            <div className='w3-large grid-item w3-center w3-round-jumbo w3-round-xlarge w3-border-deep-orange w3-border'>
+            <h2 className="w3-xxlarge" style={{
                     fontFamily: 'BlackJack'
-                }}>{p.nama}</h2></Link>
-                <div className="w3-large">
-                <label className="w3-large w3-left w3-serif">
-                    Dicipta pada: {formatTarikh(p.tarikhMasa.cipta)}
-                    </label>
-                    <br />
-                <label className="w3-large w3-medium w3-left w3-serif">Bil. Peserta: {p.bilPeserta}</label>
-                <br />
-                <label className="w3-large w3-medium w3-left w3-serif"> Status: { statusPertandingan(p.status)}</label>
-
-                <br />
+                }}>{p.nama}</h2>
+                <div className="infoPertandingan w3-large">
+                <div className="w3-large w3-left w3-serif">Dicipta pada: {formatTarikh(p.tarikhMasa.cipta)}</div>
+                <div className="w3-large w3-medium w3-left w3-serif">Bil. Peserta: {p.bilPeserta}</div>
+                <div className="w3-large w3-medium w3-left w3-serif"> Status: { statusPertandingan(p.status)}</div>
                 </div>
             </div>
-        ))) || 'Loading'}
+            </Link>
+        )))}
         </div>
         </>
     )
