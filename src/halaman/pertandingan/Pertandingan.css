@@ -21,7 +21,8 @@
 
 .status {
     display: flex;
-    width: 400px;
+    width: 30%;
+    min-width: 400px;
     margin-top: 10px;
     justify-content: space-around;
 }

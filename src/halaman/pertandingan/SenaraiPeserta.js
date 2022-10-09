@@ -1,6 +1,8 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import useFetchProtected from "../../hooks/useFetchProtected";
 import fetchLifecycle from '../../util/fetchLifecycle'
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 export default function SenaraiPeserta () {
     
@@ -9,6 +11,16 @@ export default function SenaraiPeserta () {
 
     let peserta = useFetchProtected(`http://localhost:5000/api/v1/pertandingan/${id_pertandingan}/peserta`)
     const pertandingan = useFetchProtected(`http://localhost:5000/api/v1/pertandingan/${id_pertandingan}`)
+
+    async function hapusPeserta (pertandingan_id, peserta_id)  {
+        const res = await fetchLifecycle(nav, `http://localhost:5000/api/v1/pertandingan/${pertandingan_id}/peserta/${peserta_id}/hapus`, {
+            method: 'DELETE'
+        });
+
+        if (!res.status) alert('Peserta tidak berjaya dihapuskan');
+
+        window.location.reload();
+    }
 
     return (
         <>
@@ -43,16 +55,18 @@ export default function SenaraiPeserta () {
                 <th>Akaun</th>
                 <th>Nama Penuh</th>
                 <th>Emel</th>
+                <th></th>
             </tr>
             { peserta && peserta.map((p, i) => {
             const { peserta } = p;
             return (
 
-                <tr>
+                <tr key={i}>
                     <td>{i+1}</td>
                     <td><Link to={`../${peserta._id}`}>{peserta.namaAkaun}</Link></td>
                     <td>{peserta.namaPenuh}</td>
                     <td>{peserta.emel}</td>
+                    <td><button onClick={(e) => {hapusPeserta(id_pertandingan, peserta._id)}}><FontAwesomeIcon icon={faTrash} color='red' /></button></td>
                 </tr>
                 )
             })}

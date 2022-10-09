@@ -50,6 +50,8 @@ export default function SertaiPertandingan () {
                     return;
                 }
             }
+
+            window.location.reload();
         }
 
         kendaliAksi();
@@ -93,46 +95,49 @@ export default function SertaiPertandingan () {
         <br />
         <h3>Syarat</h3>
         { syarat && syarat.map((s, i) => <>{i + 1}. <label id={i}>{s}</label><br /></>)}
+        <br />
         <h3>Sumber</h3>
         <ul>
-        { sumber && sumber.map((s, i) => <>
+        { sumber && sumber.map((s) => <>
             <li><a target={'_blank'} href={s.url} rel="noreferrer">{s.nama}</a></li></>)}
         </ul>
         <br />
 
         <div className="w3-margin">
-        <table className="w3-table w3-striped w3-hoverable w3-border w3-border-light-gray w3">
-                <tr className="w3-deep-orange">
-                    <th style={{
-                        width: '7%'
-                    }}>Kedudukan</th>
-                    <th className="">Peserta</th>
-                    <th className="w3-center" style={{
-                        width: '2%'
-                    }}>Markah</th>
-                </tr>
-            {peserta && peserta.map((p, i) => {
-                const { peserta, jumlah } = p;
-                return (
-                    <>
-                    <tr>
-                        <td className="w3-border-bottom w3-border-light-gray w3-center">{(i + 1 <= 3) ? <FontAwesomeIcon style={{
-                            position: 'relative',
-                            top: '10px'
-                        }} icon={faMedal} size='2x' color={
-                            (i + 1 === 1) ? '#FFD700' : (i + 1 === 2) ? '#C0C0C0' : '#CD7F32'
-                        } /> : i + 1}</td>
-                        <td className="w3-border-bottom w3-border-light-gray">
-                        <label className="w3-large">{peserta.namaPenuh}</label>
-                        <br />
-                        <label className="w3-medium">{peserta.namaAkaun}</label>
-                        </td>
-                        <td className="w3-border-bottom w3-border-light-gray"><label className="w3-large">{jumlah.toFixed(0)}</label></td>         
-                    </tr>
-                    </>
-                )
-            })}
-            </table>
+            {(Array.isArray(peserta) && peserta[0]) ?
+                    (
+                    <table className="w3-table w3-striped w3-hoverable w3-border w3-border-light-gray w3">
+                    <thead>
+                        <tr className="w3-deep-orange">
+                            <th style={{
+                                width: '7%'
+                            }}>Kedudukan</th>
+                            <th className="">Peserta</th>
+                            <th className="w3-center" style={{
+                                width: '2%'
+                            }}>Markah</th>
+                        </tr>
+                    </thead>
+                    {peserta.map((p, i) => {
+                        const { peserta, jumlah } = p;
+                        return (
+                            <tr key={i}>
+                                <td className="w3-border-bottom w3-border-light-gray w3-center">{(i + 1 <= 3) ? <FontAwesomeIcon style={{
+                                    position: 'relative',
+                                    top: '10px'
+                                }} icon={faMedal} size='2x' color={
+                                    (i + 1 === 1) ? '#FFD700' : (i + 1 === 2) ? '#C0C0C0' : '#CD7F32'
+                                } /> : i + 1}</td>
+                                <td className="w3-border-bottom w3-border-light-gray">
+                                <label className="w3-large">{peserta.namaPenuh}</label>
+                                <br />
+                                <label className="w3-medium">{peserta.namaAkaun}</label>
+                                </td>
+                                <td className="w3-border-bottom w3-border-light-gray"><label className="w3-large">{jumlah.toFixed(0)}</label></td>         
+                            </tr>
+                        )
+                    })}
+                    </table>) : <><div className="defaultPeserta">Tiada peserta sekarang</div></>}
         </div>
         </div>
         </>

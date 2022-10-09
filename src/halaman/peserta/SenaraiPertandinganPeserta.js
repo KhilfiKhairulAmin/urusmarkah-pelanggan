@@ -1,31 +1,100 @@
-import { Link } from "react-router-dom";
-import useFetchProtected from "../../hooks/useFetchProtected";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import RadioButton from "../../komponen/navigasi/RadioButton";
+import fetchLifecycle from "../../util/fetchLifecycle";
 import formatTarikh from "../../util/formatTarikh";
 import statusPertandingan from "../../util/statusPertandingan";
+import './Peserta.css'
 
 export default function SenaraiPertandinganPeserta () {
 
-    const pertandinganDimasuki = useFetchProtected('http://localhost:5000/api/v1/peserta/pertandingan', {});
+    const [ pertandinganDimasuki, setPertandinganDimasuki ] = useState([]);
+    const [ carianNama, setCarianNama ] = useState('');
+    const [ carianStatus, setCarianStatus ] = useState('');
 
-    const papar = (pertandinganDimasuki && pertandinganDimasuki.map((p) => {
-        const { pertandingan } = p
-        const { tentang, _id, nama, status } = pertandingan || 'Tidak Ditetapkan';
-        const { tarikhPelaksanaan } = tentang || 'Tiada';
-        return (
-            <>
-            <div className=" w3-padding-bottom w3-border-bottom w3-border-gray">
-            <Link style={{ textDecoration: 'none' }} key={`${_id}`} to={`../${_id}`}><h2 style={{ fontFamily: 'BlackJack' }} className="w3-text-deep-orange">{nama}</h2></Link>
-                Tarikh Pelaksanaan: {formatTarikh(tarikhPelaksanaan) || 'Tidak Ditetapkan'}
-                <br />
-                Status: {statusPertandingan(status) || 'Status tidak sah'}
-            </div>
-            </>
-        )
-    }))
+    const nav = useNavigate();
+
+    useEffect(() => {
+        
+        const dapatkanMaklumat = async () => {
+            const pertandingan = await fetchLifecycle(nav, `http://localhost:5000/api/v1/peserta/pertandingan?nama=${carianNama}&status=${carianStatus}`, {});
+            setPertandinganDimasuki(pertandingan);
+        }
+
+        dapatkanMaklumat()
+    }, [carianNama, carianStatus, nav])
 
     return (
         <>
-            {(papar !== []) ? papar : 'Anda belum menyertai pertandingan'}
+            <span style={{ display: 'flex', flexGrow: 1, flexDirection: 'row', justifyContent: 'left'}}>
+            <div className="w3-margin" style={{
+                width: '100%'
+            }}>
+                <span style={{
+                    display: 'flex',
+                    flexDirection: 'row'
+                }}>
+                <FontAwesomeIcon icon={faSearch} color='gray' size='xl' style={{
+                    position: 'relative',
+                    top: '8px'
+                }} />
+                <input type={'text'} placeholder='Carian Pertandingan' className="w3-border-dark-gray w3-round w3-animate-input w3-input w3-border w3-text-deep-orange" style={{
+                width: '33.5%',
+                position: 'relative',
+                left: '12px'
+            }} onChange={(e) => setCarianNama(e.target.value)} />
+                </span>
+                <span className="status">
+                        <RadioButton
+                        label="Semua"
+                        value={carianStatus === ''}
+                        onChange={(e) => setCarianStatus('')}
+                         />
+                        <RadioButton
+                        label="Belum Mula"
+                        value={carianStatus === '0'}
+                        onChange={(e) => setCarianStatus('0')}
+                         />
+                        <RadioButton
+                        label="Berlangsung"
+                        value={carianStatus === '1'}
+                        onChange={(e) => setCarianStatus('1')}
+                         />
+                        <RadioButton
+                        label="Tamat"
+                        value={carianStatus === '2'}
+                        onChange={(e) => setCarianStatus('2')}
+                         />
+                </span>
+            </div>
+            <label />
+            </span>
+            {
+                (Array.isArray(pertandinganDimasuki) && pertandinganDimasuki[0]) ? (pertandinganDimasuki.map((p, i) => {
+                    const { pertandingan } = p
+                    const { tentang, _id, nama, status, pengelola } = pertandingan || 'Tidak Ditetapkan';
+                    const { tarikhPelaksanaan } = tentang || 'Tiada';
+
+                    if (!pertandingan) return (<div key={i}></div>)
+
+                    return (
+                        <Link style={{ textDecoration: 'none' }} key={`${_id}`} to={`../${_id}`}>
+                            <h2 style={{ fontFamily: 'BlackJack' }} className="w3-text-deep-orange">{nama}</h2>
+                        <div className=" w3-padding-bottom w3-border-bottom w3-border-gray" key={i}>
+                            Pengelola: {pengelola.namaAkaun}
+                            <br />
+                            Tarikh Pelaksanaan: {formatTarikh(tarikhPelaksanaan) || 'Tidak Ditetapkan'}
+                            <br />
+                            Status: {statusPertandingan(status) || 'Status tidak sah'}
+                        </div>
+                        </Link>
+                    )
+                }))
+                :
+                (<><br /><div className="defaultPeserta">Anda belum menyertai pertandingan</div></>)
+            }
         </>
     )
 }
