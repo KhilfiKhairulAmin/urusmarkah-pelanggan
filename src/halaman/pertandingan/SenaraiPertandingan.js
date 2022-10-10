@@ -77,7 +77,7 @@ export default function SenaraiPertandingan () {
             </Link>
         </span>
         <div className='grid-container w3-margin w3-serif w3-center'>
-        { 'Loading' && (pertandingan && pertandingan.map((p) => (
+        { (Array.isArray(pertandingan) && pertandingan[0]) ? (pertandingan && pertandingan.map((p) => (
             <Link to={p._id} style={{
                 textDecoration: 'none'
             }} className="hoverPertandingan">
@@ -92,7 +92,7 @@ export default function SenaraiPertandingan () {
                 </div>
             </div>
             </Link>
-        )))}
+        ))) : <><br /><div className="defaultPeserta"><label>Kelola sebuah pertandingan anda sendiri</label></div></>}
         </div>
         </>
     )

@@ -44,23 +44,6 @@ export default function SenaraiPertandinganPeserta () {
                 left: '12px'
             }} onChange={(e) => setCarianNama(e.target.value)} />
                 </span>
-                {/* <span className="status">
-                        <RadioButton
-                        label=""
-                        value={carianStatus === '0'}
-                        onChange={(e) => setCarianStatus('0')}
-                         />
-                        <RadioButton
-                        label="Berlangsung"
-                        value={carianStatus === '1'}
-                        onChange={(e) => setCarianStatus('1')}
-                         />
-                        <RadioButton
-                        label="Tamat"
-                        value={carianStatus === '2'}
-                        onChange={(e) => setCarianStatus('2')}
-                         />
-                </span> */}
             </div>
             <label />
             </span>
@@ -88,7 +71,7 @@ export default function SenaraiPertandinganPeserta () {
                     )
                 }))
                 :
-                (<><br /><div className="defaultPeserta">Tiada pertandingan dijumpai</div></>)
+                (<><br /><div className="defaultPeserta">Tiada pertandingan buat masa sekarang</div></>)
             }
         </>
     )

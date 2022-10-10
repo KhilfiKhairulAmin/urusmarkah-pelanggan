@@ -74,7 +74,7 @@ export default function SenaraiPertandinganPeserta () {
             {
                 (Array.isArray(pertandinganDimasuki) && pertandinganDimasuki[0]) ? (pertandinganDimasuki.map((p, i) => {
                     const { pertandingan } = p
-                    const { tentang, _id, nama, status, pengelola } = pertandingan || 'Tidak Ditetapkan';
+                    const { tentang, _id, nama, status } = pertandingan || 'Tidak Ditetapkan';
                     const { tarikhPelaksanaan } = tentang || 'Tiada';
 
                     if (!pertandingan) return (<div key={i}></div>)
@@ -83,8 +83,6 @@ export default function SenaraiPertandinganPeserta () {
                         <Link style={{ textDecoration: 'none' }} key={`${_id}`} to={`../${_id}`}>
                             <h2 style={{ fontFamily: 'BlackJack' }} className="w3-text-deep-orange">{nama}</h2>
                         <div className=" w3-padding-bottom w3-border-bottom w3-border-gray" key={i}>
-                            Pengelola: {pengelola.namaAkaun}
-                            <br />
                             Tarikh Pelaksanaan: {formatTarikh(tarikhPelaksanaan) || 'Tidak Ditetapkan'}
                             <br />
                             Status: {statusPertandingan(status) || 'Status tidak sah'}
@@ -93,7 +91,7 @@ export default function SenaraiPertandinganPeserta () {
                     )
                 }))
                 :
-                (<><br /><div className="defaultPeserta">Anda belum menyertai pertandingan</div></>)
+                (<><br /><div className="defaultPeserta">Tiada pertandingan buat masa sekarang</div></>)
             }
         </>
     )
